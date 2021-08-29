@@ -4,9 +4,11 @@
 
 %option noyywrap
 
-%{
+/* Definitions */
+%{ 
 
 #include <math.h>
+int id = 0;
 
 %}
 
@@ -54,22 +56,27 @@ ID	[a-z][a-z0-9]*
 
 %%
 
-{DIGIT}+ { printf("Numero inteiro encontrado: %s (%d)\n", yytext, atoi(yytext));}
+{DIGIT}+ 								{ printf("[num, %d]", atoi(yytext));}
 
-{DIGIT}"."{DIGIT}* {printf("Numero float encontrado: %s (%f)\n", yytext, atof(yytext));}
+{DIGIT}* 								{ printf("[num-Novamente, %d]", atoi(yytext));}
 
-if|then|begin|procedure|function	{
-		printf("Palavra reservada encontrada: %s\n ", yytext);}
+{DIGIT}"."{DIGIT}* 						{printf("Numero float encontrado: %s (%f)\n", yytext, atof(yytext));}
 
-{ID}	{printf("Identificador encontrado: %s\n", yytext);}
+if|then|begin|procedure|function|int 	{printf("[reserved_word, %s]", yytext);}
 
-"+"|"-"|"*"|"/" {printf("Operador encontrado: %s\n", yytext);}
+{ID} 									{id++;printf("[id, %d]", id);}
 
-"{"[\^{}}\n]*"}"	
+"=" 									{printf("Equal_OP, %s]", yytext);}
 
-[ \t\n]+		
+"+"|"-"|"*"|"/" 						{printf("Operador encontrado: %s\n", yytext);}
 
-.	printf("Caractere nao reconhecido: %s\n", yytext);
+"{"[\^{}}\n]*"}"
+
+[ \t\n]+
+
+";" 									{printf("\n");}
+
+	. 									{printf("Caractere nao reconhecido: %s\n", yytext);}
 
 %%
 

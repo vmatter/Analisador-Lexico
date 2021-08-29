@@ -285,15 +285,15 @@ static void yy_fatal_error YY_PROTO(( yyconst char msg[] ));
 	*yy_cp = '\0'; \
 	yy_c_buf_p = yy_cp;
 
-#define YY_NUM_RULES 9
-#define YY_END_OF_BUFFER 10
-static yyconst short int yy_accept[43] =
+#define YY_NUM_RULES 12
+#define YY_END_OF_BUFFER 13
+static yyconst short int yy_accept[46] =
     {   0,
-        0,    0,   10,    8,    7,    7,    5,    1,    4,    4,
-        4,    4,    4,    4,    8,    7,    2,    1,    4,    4,
-        4,    3,    4,    4,    0,    6,    2,    4,    4,    4,
-        4,    4,    4,    4,    4,    4,    4,    4,    4,    4,
-        4,    0
+        2,    2,   13,   11,    9,    9,    7,    1,   10,    6,
+        5,    5,    5,    5,    5,    5,   11,    9,    3,    1,
+        5,    5,    5,    4,    5,    5,    5,    0,    8,    3,
+        5,    5,    5,    5,    5,    5,    5,    5,    5,    5,
+        5,    5,    5,    5,    0
     } ;
 
 static yyconst int yy_ec[256] =
@@ -303,15 +303,15 @@ static yyconst int yy_ec[256] =
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    2,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    4,    5,    1,    6,    7,    8,    9,    9,    9,
-        9,    9,    9,    9,    9,    9,    9,    1,    1,    1,
+        9,    9,    9,    9,    9,    9,    9,    1,   10,    1,
+       11,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,   10,    1,    1,   11,   12,   13,   14,
+        1,    1,    1,   12,    1,    1,   13,   14,   15,   16,
 
-       15,   16,   17,   18,   19,   11,   11,   11,   11,   20,
-       21,   22,   11,   23,   11,   24,   25,   11,   11,   11,
-       11,   11,   26,    1,   27,    1,    1,    1,    1,    1,
+       17,   18,   19,   20,   21,   13,   13,   13,   13,   22,
+       23,   24,   13,   25,   13,   26,   27,   13,   13,   13,
+       13,   13,   28,    1,   29,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -328,61 +328,61 @@ static yyconst int yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static yyconst int yy_meta[28] =
+static yyconst int yy_meta[30] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    2,    1,
-        2,    2,    2,    2,    2,    2,    2,    2,    2,    2,
-        2,    2,    2,    2,    2,    1,    1
+        1,    1,    2,    2,    2,    2,    2,    2,    2,    2,
+        2,    2,    2,    2,    2,    2,    2,    1,    1
     } ;
 
-static yyconst short int yy_base[44] =
+static yyconst short int yy_base[47] =
     {   0,
-        0,    0,   75,   76,   26,   28,   76,   25,    0,   59,
-       48,   56,   48,   52,   30,   33,   60,   59,    0,   50,
-       46,    0,   44,   49,   34,   36,   50,   39,   42,   41,
-       33,   32,   27,   35,   30,   34,   26,   20,   23,   19,
-       26,   76,   36
+        0,    0,   79,   80,   28,   30,   80,   27,   80,   80,
+        0,   61,   50,   17,   51,   55,   34,   38,   65,   64,
+        0,   53,   49,    0,   40,   42,   47,   39,   41,   52,
+       39,   44,   43,   35,   34,   29,   37,   31,   34,   26,
+       21,   25,   20,   26,   80,   36
     } ;
 
-static yyconst short int yy_def[44] =
+static yyconst short int yy_def[47] =
     {   0,
-       42,    1,   42,   42,   42,   42,   42,   42,   43,   43,
-       43,   43,   43,   43,   42,   42,   42,   42,   43,   43,
-       43,   43,   43,   43,   42,   42,   42,   43,   43,   43,
-       43,   43,   43,   43,   43,   43,   43,   43,   43,   43,
-       43,    0,   42
+       45,    1,   45,   45,   45,   45,   45,   45,   45,   45,
+       46,   46,   46,   46,   46,   46,   45,   45,   45,   45,
+       46,   46,   46,   46,   46,   46,   46,   45,   45,   45,
+       46,   46,   46,   46,   46,   46,   46,   46,   46,   46,
+       46,   46,   46,   46,    0,   45
     } ;
 
-static yyconst short int yy_nxt[104] =
+static yyconst short int yy_nxt[110] =
     {   0,
-        4,    5,    6,    7,    7,    7,    4,    7,    8,    4,
-        9,   10,    9,    9,    9,   11,    9,    9,   12,    9,
-        9,   13,    9,   14,    9,   15,    4,   16,   16,   16,
-       16,   17,   25,   18,   16,   16,   25,   19,   25,   25,
-       22,   41,   22,   25,   40,   25,   39,   38,   37,   36,
-       35,   22,   22,   34,   33,   25,   26,   32,   27,   25,
-       26,   25,   26,   31,   30,   29,   28,   18,   27,   24,
-       23,   22,   21,   20,   42,    3,   42,   42,   42,   42,
-       42,   42,   42,   42,   42,   42,   42,   42,   42,   42,
-       42,   42,   42,   42,   42,   42,   42,   42,   42,   42,
+        4,    5,    6,    7,    7,    7,    4,    7,    8,    9,
+       10,    4,   11,   12,   11,   11,   11,   13,   11,   11,
+       14,   11,   11,   15,   11,   16,   11,   17,    4,   18,
+       18,   18,   18,   19,   24,   20,   28,   21,   25,   18,
+       18,   28,   24,   28,   44,   28,   24,   43,   42,   41,
+       28,   40,   28,   39,   38,   24,   24,   37,   36,   35,
+       30,   28,   29,   34,   33,   24,   28,   29,   28,   29,
+       32,   31,   20,   30,   27,   26,   23,   22,   45,    3,
+       45,   45,   45,   45,   45,   45,   45,   45,   45,   45,
+       45,   45,   45,   45,   45,   45,   45,   45,   45,   45,
 
-       42,   42,   42
+       45,   45,   45,   45,   45,   45,   45,   45,   45
     } ;
 
-static yyconst short int yy_chk[104] =
+static yyconst short int yy_chk[110] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    5,    5,    6,
-        6,    8,   15,    8,   16,   16,   25,   43,   26,   15,
-       41,   40,   39,   25,   38,   26,   37,   36,   35,   34,
-       33,   32,   31,   30,   29,   15,   15,   28,   27,   25,
-       25,   26,   26,   24,   23,   21,   20,   18,   17,   14,
-       13,   12,   11,   10,    3,   42,   42,   42,   42,   42,
-       42,   42,   42,   42,   42,   42,   42,   42,   42,   42,
-       42,   42,   42,   42,   42,   42,   42,   42,   42,   42,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    5,
+        5,    6,    6,    8,   14,    8,   17,   46,   14,   18,
+       18,   28,   44,   29,   43,   17,   42,   41,   40,   39,
+       28,   38,   29,   37,   36,   35,   34,   33,   32,   31,
+       30,   17,   17,   27,   26,   25,   28,   28,   29,   29,
+       23,   22,   20,   19,   16,   15,   13,   12,    3,   45,
+       45,   45,   45,   45,   45,   45,   45,   45,   45,   45,
+       45,   45,   45,   45,   45,   45,   45,   45,   45,   45,
 
-       42,   42,   42
+       45,   45,   45,   45,   45,   45,   45,   45,   45
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -396,14 +396,45 @@ static char *yy_last_accepting_cpos;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "pascaltoy.lex"
+#line 1 "AnalisadorLexico.lex"
 #define INITIAL 0
-/* Scanner para uma linguagem Pascal simplificada */
-#line 6 "pascaltoy.lex"
+/* Trabalho 1 - Tradutores --> Analisador Léxico */
+/* Nomes: Daniel Lopes Ferreira, Maxwell Frank Barbosa, Vítor Kehl Matter */
+/* Definitions */
+#line 9 "AnalisadorLexico.lex"
 
 #include <math.h>
+int id = 0;
 
-#line 407 "lex.yy.c"
+/* Variáveis ou identificadores: este analisador léxico deve ser capaz de reconhecer
+* nomes de variáveis, funções, parâmetros de funções em um código fonte. Além disso,
+* deve ser tratada a análise de escopo para a correta definição dos identificadores:
+*/
+/* Constantes numéricas (números inteiros): este analisador léxico deve ser capaz de
+* reconhecer um número inteiro qualquer e convertê-lo para os respectivos tokens:*/
+/* Palavras reservadas: este analisador léxico deve ser capaz de reconhecer palavras
+* reservadas. Por exemplo, do, while, if, else, switch, for, return, null, int, float, double,
+* string, bool, break, case, etc e convertê-las para os respectivos tokens:
+*/
+/* Operadores relacionais: este analisador léxico deve ser capaz de reconhecer os
+* operadores relacionais: <, <=, ==, !=, >=, > e convertê-los para os respectivos tokens:*/
+/* Números de ponto flutuante (números reais): este analisador léxico deve ser capaz de
+* reconhecer números reais quaisquer e convertê-los para os respectivos tokens: 
+*/
+/* Remoção de espaços em branco e comentários: este analisador léxico deve ser capaz
+* de reconhecer espaços em branco e comentários no código fonte e removê-los
+* (ignorá-los) .
+*/
+/* Strings:este analisador léxico deve ser capaz de reconhecer os strings e convertê-las
+* para seus respectivos tokens:
+*/
+/* Operadores lógicos: este analisador léxico deve ser capaz de reconhecer os operadores
+* lógicos:|| && e convertê-los para os respectivos tokens:
+*/
+/* Demais caracteres:este analisador léxico deve ser capaz de reconhecer os caracteres:
+* = ( ) { } , ; e convertê-los para seus respectivos tokens:
+*/
+#line 438 "lex.yy.c"
 
 /* Macros after this point can all be overridden by user definitions in
  * section 1.
@@ -554,10 +585,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
 
-#line 16 "pascaltoy.lex"
+#line 57 "AnalisadorLexico.lex"
 
 
-#line 561 "lex.yy.c"
+#line 592 "lex.yy.c"
 
 	if ( yy_init )
 		{
@@ -608,13 +639,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 43 )
+				if ( yy_current_state >= 46 )
 					yy_c = yy_meta[(unsigned int) yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 76 );
+		while ( yy_base[yy_current_state] != 80 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -642,51 +673,65 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 18 "pascaltoy.lex"
-{ printf("Numero inteiro encontrado: %s (%d)\n", yytext, atoi(yytext));}
+#line 59 "AnalisadorLexico.lex"
+{ printf("[num, %d]", atoi(yytext));}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 20 "pascaltoy.lex"
-{printf("Numero float encontrado: %s (%f)\n", yytext, atof(yytext));}
+#line 61 "AnalisadorLexico.lex"
+{ printf("[num-Novamente, %d]", atoi(yytext));}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 22 "pascaltoy.lex"
-{
-		printf("Palavra reservada encontrada: %s\n ", yytext);}
+#line 63 "AnalisadorLexico.lex"
+{printf("Numero float encontrado: %s (%f)\n", yytext, atof(yytext));}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 25 "pascaltoy.lex"
-{printf("Identificador encontrado: %s\n", yytext);}
+#line 65 "AnalisadorLexico.lex"
+{printf("[reserved_word, %s]", yytext);}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 27 "pascaltoy.lex"
-{printf("Operador encontrado: %s\n", yytext);}
+#line 67 "AnalisadorLexico.lex"
+{id++;printf("[id, %d]", id);}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 29 "pascaltoy.lex"
-
+#line 69 "AnalisadorLexico.lex"
+{printf("Equal_OP, %s]", yytext);}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 31 "pascaltoy.lex"
-
+#line 71 "AnalisadorLexico.lex"
+{printf("Operador encontrado: %s\n", yytext);}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 33 "pascaltoy.lex"
-printf("Caractere nao reconhecido: %s\n", yytext);
+#line 73 "AnalisadorLexico.lex"
+
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 35 "pascaltoy.lex"
+#line 75 "AnalisadorLexico.lex"
+
+	YY_BREAK
+case 10:
+YY_RULE_SETUP
+#line 77 "AnalisadorLexico.lex"
+{printf("\n");}
+	YY_BREAK
+case 11:
+YY_RULE_SETUP
+#line 79 "AnalisadorLexico.lex"
+{printf("Caractere nao reconhecido: %s\n", yytext);}
+	YY_BREAK
+case 12:
+YY_RULE_SETUP
+#line 81 "AnalisadorLexico.lex"
 ECHO;
 	YY_BREAK
-#line 690 "lex.yy.c"
+#line 735 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -978,7 +1023,7 @@ static yy_state_type yy_get_previous_state()
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 43 )
+			if ( yy_current_state >= 46 )
 				yy_c = yy_meta[(unsigned int) yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
@@ -1013,11 +1058,11 @@ yy_state_type yy_current_state;
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 43 )
+		if ( yy_current_state >= 46 )
 			yy_c = yy_meta[(unsigned int) yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
-	yy_is_jam = (yy_current_state == 42);
+	yy_is_jam = (yy_current_state == 45);
 
 	return yy_is_jam ? 0 : yy_current_state;
 	}
@@ -1572,7 +1617,7 @@ int main()
 	return 0;
 	}
 #endif
-#line 35 "pascaltoy.lex"
+#line 81 "AnalisadorLexico.lex"
 
 
 int main(int argc, char *argv[]){
