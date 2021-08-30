@@ -51,8 +51,9 @@ int id = 0;
 
 
 
-DIGIT	[0-9]
-ID	[a-z][a-z0-9]*
+DIGIT		[0-9]
+ID			[a-z][a-z0-9]*
+FUNCTION 	[a-z|A-Z]* ?\(.*\)
 
 %%
 
@@ -62,7 +63,10 @@ ID	[a-z][a-z0-9]*
 
 {DIGIT}"."{DIGIT}* 						{printf("Numero float encontrado: %s (%f)\n", yytext, atof(yytext));}
 
-if|then|begin|procedure|function|int 	{printf("[reserved_word, %s]", yytext);}
+while|if|else|switch|for|return| 
+null|int|float|double|string|bool|
+break|case|void|#include|printf|getch|
+scanf									{printf("[reserved_word, %s]", yytext);}
 
 {ID} 									{id++;printf("[id, %d]", id);}
 
