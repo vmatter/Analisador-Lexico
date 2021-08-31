@@ -51,36 +51,50 @@ int id = 0;
 
 
 
-DIGIT		[0-9]
-ID			[a-z][a-z0-9]*
-FUNCTION 	[a-z|A-Z]* ?\(.*\)
+/* TODO:
+* 		Armazenar variável com seu ID, quando ela aparecer novamente usar o mesmo ID já criado.
+*/
+
+%x C_COMMENT
+DIGIT			[0-9]
+ID				[a-z][a-z0-9]*
+FUNCTION 		[a-z|A-Z]* ?\(.*\)
+STRING			\".*\"
+COMMENT			\/\/.*
 
 %%
 
-{DIGIT}+ 								{ printf("[num, %d]", atoi(yytext));}
+<INITIAL>"/*"         					{BEGIN(C_COMMENT);}
+<C_COMMENT>"*/"							{BEGIN(INITIAL);}
+<C_COMMENT>[^*\n]+   
+<C_COMMENT>"*"       
+<C_COMMENT>\n        
 
-{DIGIT}* 								{ printf("[num-Novamente, %d]", atoi(yytext));}
+{COMMENT}
 
-{DIGIT}"."{DIGIT}* 						{printf("Numero float encontrado: %s (%f)\n", yytext, atof(yytext));}
+{DIGIT}*"."{DIGIT}* 					{printf("[num, %.2f]", atof(yytext));}
 
-while|if|else|switch|for|return| 
-null|int|float|double|string|bool|
-break|case|void|#include|printf|getch|
-scanf									{printf("[reserved_word, %s]", yytext);}
+{DIGIT}+ 								{printf("[num, %d]", atoi(yytext));}
+
+while|if|else|switch|for|return|null|int|float|double|String|bool|break|case|void|#include|printf|getch|scanf	{printf("[reserved_word, %s]", yytext);}
 
 {ID} 									{id++;printf("[id, %d]", id);}
 
-"=" 									{printf("Equal_OP, %s]", yytext);}
+"+"|"-"|"*"|"/" 						{printf("[Arith_Op, %s]", yytext);}
 
-"+"|"-"|"*"|"/" 						{printf("Operador encontrado: %s\n", yytext);}
+"<"|"<="|"=="|"!="|">="|">" 			{printf("[Relational_Op, %s]", yytext);}
 
-"{"[\^{}}\n]*"}"
+"=" 									{printf("[Equal_OP, %s]", yytext);}
 
-[ \t\n]+
+"("|")"|"{"|"}"							{{printf("[Simbolo, %s]", yytext);}}
+
+{STRING}								{{printf("[string_literal, %s]", yytext);}}
 
 ";" 									{printf("\n");}
 
-	. 									{printf("Caractere nao reconhecido: %s\n", yytext);}
+[ \t\n]+
+
+.	 									{printf("Caractere nao reconhecido: %s\n", yytext);}
 
 %%
 
