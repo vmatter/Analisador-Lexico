@@ -61,6 +61,7 @@ ID				[a-z][a-z0-9]*
 FUNCTION 		[a-z|A-Z]* ?\(.*\)
 STRING			\".*\"
 COMMENT			\/\/.*
+RESERVED		while|if|else|switch|for|return|null|int|float|double|String|bool|break|case|void|#include|printf|getch|scanf
 
 %%
 
@@ -76,7 +77,9 @@ COMMENT			\/\/.*
 
 {DIGIT}+ 								{printf("[num, %d]", atoi(yytext));}
 
-while|if|else|switch|for|return|null|int|float|double|String|bool|break|case|void|#include|printf|getch|scanf	{printf("[reserved_word, %s]", yytext);}
+{RESERVED}\ ?"*"\ ?{ID}					{printf("[pointer_declaration, %s]", yytext);}
+
+{RESERVED}								{printf("[reserved_word, %s]", yytext);}
 
 {ID} 									{id++;printf("[id, %d]", id);}
 
