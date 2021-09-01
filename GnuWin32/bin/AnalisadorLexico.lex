@@ -67,11 +67,17 @@ RESERVED		while|if|else|switch|for|return|null|int|float|double|String|bool|brea
 
 <INITIAL>"/*"         					{BEGIN(C_COMMENT);}
 <C_COMMENT>"*/"							{BEGIN(INITIAL);}
-<C_COMMENT>[^*\n]+   
+<C_COMMENT>[^*\n]+   						
 <C_COMMENT>"*"       
 <C_COMMENT>\n        
 
 {COMMENT}
+
+\<.+\>									{printf("[include, %s]", yytext);}
+
+\ "*"\ ?\(?{ID}\)?						{printf("[pointer_value, %s]", yytext);}
+
+^\*\ ?\(?{ID}\)?						{printf("[pointer_value, %s]", yytext);}
 
 {DIGIT}*"."{DIGIT}* 					{printf("[num, %.2f]", atof(yytext));}
 
