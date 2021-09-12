@@ -1,0 +1,54 @@
+for
+
+if (RESERVED == for)
+
+
+
+
+v++;
+
+
+if(v > 5)
+
+
+// [{, a = 2, }]
+
+int a = 2
+
+if(alguma > 2) {
+	int b = 0;
+	int a = 3;
+	if(outraCoisa > 2) {
+		int c = 0;
+		a++;
+	}
+		
+}
+    linha == escopo/ coluna == nomeVar
+nome[][]
+
+
+[a],
+[b, a],
+[c]
+
+nome[0][0] == a
+nome[0][1] == null
+nome[1][0] == b
+nome[1][1] == a
+nome[2][0] == c
+
+
+linha == escopo/ coluna == index
+id[][]
+
+
+[0],
+[1, 2],
+[3]
+
+
+id[0][0] == 0
+id[1][0] == 1
+id[1][1] == 2
+id[2][0] == 3

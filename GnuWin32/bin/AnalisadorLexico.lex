@@ -8,7 +8,10 @@
 %{ 
 
 #include <math.h>
-int id = 0;
+int currentId = 0;
+char* name[10][10] = {NULL};
+int id[10][10];
+int scope = 0;
 
 %}
 
@@ -62,6 +65,9 @@ FUNCTION 		[a-z|A-Z]* ?\(.*\)
 STRING			\".*\"
 COMMENT			\/\/.*
 RESERVED		while|if|else|switch|for|return|null|int|float|double|String|bool|break|case|void|#include|printf|getch|scanf
+START_SCOPE  	\{
+END_SCOPE		\}
+
 
 %%
 
@@ -72,6 +78,15 @@ RESERVED		while|if|else|switch|for|return|null|int|float|double|String|bool|brea
 <C_COMMENT>\n        
 
 {COMMENT}
+
+{START_SCOPE} 							{scope++;}
+
+{END_SCOPE} 							{
+										 for(int i = 0; i < sizeof name[scope] / sizeof name[scope][0]; i++){ 
+											 name[scope][i] = NULL;
+										 }
+									     scope--; 
+										 }
 
 \<.+\>									{printf("[include, %s]", yytext);}
 
@@ -87,7 +102,37 @@ RESERVED		while|if|else|switch|for|return|null|int|float|double|String|bool|brea
 
 {RESERVED}								{printf("[reserved_word, %s]", yytext);}
 
-{ID} 									{id++;printf("[id, %d]", id);}
+{ID} 									{ printf("\n yytext -->  %s \n", yytext);
+										  printf("\n scope --> %d \n", scope);
+											int existId = 0;
+											for(int i = scope; i >= 0; i--) {
+												if(existId == 1) {
+													break;
+												}
+												for(int j = 0; j < sizeof name[i] / sizeof name[i][0]; j++){
+													printf("\n '%s' ==  '%s' \n",yytext, name[i][j]);
+													if (yytext == name[i][j]) {
+														printf("Entrou aqui?");
+														printf("[id, %d]", id[i][j]);
+														existId = 1;
+														break;
+													}
+												}
+											}
+											if (existId == 0){
+												for(int k = 0; k < sizeof name[scope] / sizeof name[scope][0]; k++){
+													if (name[scope][k] == NULL) {
+														currentId++;
+														id[scope][k] = currentId;
+														// TODO: Revisar a atribuicao do yytext.
+														name[scope][k] = yytext;
+														printf("\n name[scope][k] --> %s \n", name[scope][k]);
+														printf("[id, %d]", id[scope][k]);
+														break;
+													}
+												}
+											}
+										}
 
 "+"|"-"|"*"|"/" 						{printf("[Arith_Op, %s]", yytext);}
 
