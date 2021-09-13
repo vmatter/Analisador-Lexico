@@ -473,8 +473,9 @@ char *yytext;
 #line 9 "AnalisadorLexico.lex"
 
 #include <math.h>
+#include <string.h>
 int currentId = 0;
-char* name[10][10] = {NULL};
+char* name[10][10][100] = {NULL};
 int id[10][10];
 int scope = 0;
 
@@ -511,7 +512,7 @@ int scope = 0;
 */
 #define C_COMMENT 1
 
-#line 515 "lex.yy.c"
+#line 516 "lex.yy.c"
 
 /* Macros after this point can all be overridden by user definitions in
  * section 1.
@@ -665,10 +666,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
 
-#line 72 "AnalisadorLexico.lex"
+#line 73 "AnalisadorLexico.lex"
 
 
-#line 672 "lex.yy.c"
+#line 673 "lex.yy.c"
 
 	if ( yy_init )
 		{
@@ -754,42 +755,42 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 74 "AnalisadorLexico.lex"
+#line 75 "AnalisadorLexico.lex"
 {BEGIN(C_COMMENT);}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 75 "AnalisadorLexico.lex"
+#line 76 "AnalisadorLexico.lex"
 {BEGIN(INITIAL);}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 76 "AnalisadorLexico.lex"
+#line 77 "AnalisadorLexico.lex"
 
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 77 "AnalisadorLexico.lex"
+#line 78 "AnalisadorLexico.lex"
 
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 78 "AnalisadorLexico.lex"
+#line 79 "AnalisadorLexico.lex"
 
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 80 "AnalisadorLexico.lex"
+#line 81 "AnalisadorLexico.lex"
 
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 82 "AnalisadorLexico.lex"
+#line 83 "AnalisadorLexico.lex"
 {scope++;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 84 "AnalisadorLexico.lex"
+#line 85 "AnalisadorLexico.lex"
 {
 										 for(int i = 0; i < sizeof name[scope] / sizeof name[scope][0]; i++){ 
 											 name[scope][i] = NULL;
@@ -799,42 +800,42 @@ YY_RULE_SETUP
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 91 "AnalisadorLexico.lex"
+#line 92 "AnalisadorLexico.lex"
 {printf("[include, %s]", yytext);}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 93 "AnalisadorLexico.lex"
+#line 94 "AnalisadorLexico.lex"
 {printf("[pointer_value, %s]", yytext);}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 95 "AnalisadorLexico.lex"
+#line 96 "AnalisadorLexico.lex"
 {printf("[pointer_value, %s]", yytext);}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 97 "AnalisadorLexico.lex"
+#line 98 "AnalisadorLexico.lex"
 {printf("[num, %.2f]", atof(yytext));}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 99 "AnalisadorLexico.lex"
+#line 100 "AnalisadorLexico.lex"
 {printf("[num, %d]", atoi(yytext));}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 101 "AnalisadorLexico.lex"
+#line 102 "AnalisadorLexico.lex"
 {printf("[pointer_declaration, %s]", yytext);}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 103 "AnalisadorLexico.lex"
+#line 104 "AnalisadorLexico.lex"
 {printf("[reserved_word, %s]", yytext);}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 105 "AnalisadorLexico.lex"
+#line 106 "AnalisadorLexico.lex"
 { printf("\n yytext -->  %s \n", yytext);
 										  printf("\n scope --> %d \n", scope);
 											int existId = 0;
@@ -843,7 +844,11 @@ YY_RULE_SETUP
 													break;
 												}
 												for(int j = 0; j < sizeof name[i] / sizeof name[i][0]; j++){
-													printf("\n '%s' ==  '%s' \n",yytext, name[i][j]);
+													// printf("\n '%s' ==  '%s' \n",yytext, name[i][j]);
+													char* str = malloc(strlen(yytext)+1);
+                                                    if (str == NULL) abort();
+                                                    strcpy(str,yytext);
+                                                    // printf("\n str '%s' ==  '%s' \n",yytext, name[i][j]);
 													if (yytext == name[i][j]) {
 														printf("Entrou aqui?");
 														printf("[id, %d]", id[i][j]);
@@ -857,8 +862,13 @@ YY_RULE_SETUP
 													if (name[scope][k] == NULL) {
 														currentId++;
 														id[scope][k] = currentId;
-														name[scope][k] = yytext[0];
-														printf("\n name[scope][k] --> %s \n", name[scope][k]);
+														// TODO: Revisar a atribuicao do yytext.
+														printf("\n 'ARMAZENANDO:  '%s' \n",yytext);
+														char* str = malloc(strlen(yytext)+1);
+                                                        if (str == NULL) abort();
+                                                        strcpy(str,yytext);
+                                                        name[scope][k] = str;
+														// printf("\n name[scope][k] --> %s \n", name[scope][k]);
 														printf("[id, %d]", id[scope][k]);
 														break;
 													}
@@ -868,50 +878,50 @@ YY_RULE_SETUP
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 136 "AnalisadorLexico.lex"
+#line 146 "AnalisadorLexico.lex"
 {printf("[Arith_Op, %s]", yytext);}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 138 "AnalisadorLexico.lex"
+#line 148 "AnalisadorLexico.lex"
 {printf("[Relational_Op, %s]", yytext);}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 140 "AnalisadorLexico.lex"
+#line 150 "AnalisadorLexico.lex"
 {printf("[Equal_OP, %s]", yytext);}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 142 "AnalisadorLexico.lex"
+#line 152 "AnalisadorLexico.lex"
 {{printf("[Simbolo, %s]", yytext);}}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 144 "AnalisadorLexico.lex"
+#line 154 "AnalisadorLexico.lex"
 {{printf("[string_literal, %s]", yytext);}}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 146 "AnalisadorLexico.lex"
+#line 156 "AnalisadorLexico.lex"
 {printf("\n");}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 148 "AnalisadorLexico.lex"
+#line 158 "AnalisadorLexico.lex"
 
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 150 "AnalisadorLexico.lex"
+#line 160 "AnalisadorLexico.lex"
 {printf("Caractere nao reconhecido: %s\n", yytext);}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 152 "AnalisadorLexico.lex"
+#line 162 "AnalisadorLexico.lex"
 ECHO;
 	YY_BREAK
-#line 915 "lex.yy.c"
+#line 925 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(C_COMMENT):
 	yyterminate();
@@ -1800,7 +1810,7 @@ int main()
 	return 0;
 	}
 #endif
-#line 152 "AnalisadorLexico.lex"
+#line 162 "AnalisadorLexico.lex"
 
 
 int main(int argc, char *argv[]){

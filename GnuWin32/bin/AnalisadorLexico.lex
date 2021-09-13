@@ -8,6 +8,7 @@
 %{ 
 
 #include <math.h>
+#include <string.h>
 int currentId = 0;
 char* name[10][10] = {NULL};
 int id[10][10];
@@ -111,7 +112,11 @@ END_SCOPE		\}
 												}
 												for(int j = 0; j < sizeof name[i] / sizeof name[i][0]; j++){
 													printf("\n '%s' ==  '%s' \n",yytext, name[i][j]);
-													if (yytext == name[i][j]) {
+													char* str = malloc(strlen(yytext)+1);
+                                                    if (str == NULL) abort();
+                                                    strcpy(str,yytext);
+                                                    printf("\n str '%s' ==  '%s' \n",yytext, name[i][j]);
+													if (str == name[i][j]) {
 														printf("Entrou aqui?");
 														printf("[id, %d]", id[i][j]);
 														existId = 1;
@@ -125,7 +130,11 @@ END_SCOPE		\}
 														currentId++;
 														id[scope][k] = currentId;
 														// TODO: Revisar a atribuicao do yytext.
-														name[scope][k] = yytext;
+														printf("\n 'ARMAZENANDO:  '%s' \n",yytext);
+														char* str = malloc(strlen(yytext)+1);
+                                                        if (str == NULL) abort();
+                                                        strcpy(str,yytext);
+                                                        name[scope][k] = str;
 														printf("\n name[scope][k] --> %s \n", name[scope][k]);
 														printf("[id, %d]", id[scope][k]);
 														break;
