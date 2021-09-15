@@ -10,7 +10,8 @@
 #include <math.h>
 #include <string.h>
 int currentId = 0;
-char* name[10][10] = {NULL};
+// TODO: PROBLEMA NA MATRIZ, Soh preenche o primeiro elemento
+char* name[10][10] = {""};
 int id[10][10];
 int scope = 0;
 
@@ -84,7 +85,7 @@ END_SCOPE		\}
 
 {END_SCOPE} 							{
 										 for(int i = 0; i < sizeof name[scope] / sizeof name[scope][0]; i++){ 
-											 name[scope][i] = NULL;
+											 name[scope][i] = "";
 										 }
 									     scope--; 
 										 }
@@ -113,10 +114,11 @@ END_SCOPE		\}
 												for(int j = 0; j < sizeof name[i] / sizeof name[i][0]; j++){
 													printf("\n '%s' ==  '%s' \n",yytext, name[i][j]);
 													char* str = malloc(strlen(yytext)+1);
-                                                    if (str == NULL) abort();
+                                                    if (strcmp(str, "")) abort();
                                                     strcpy(str,yytext);
                                                     printf("\n str '%s' ==  '%s' \n",yytext, name[i][j]);
-													if (str == name[i][j]) {
+													// TODO: Verificar strcmp.
+													if (strcmp(str, name[i][j])) {
 														printf("Entrou aqui?");
 														printf("[id, %d]", id[i][j]);
 														existId = 1;
@@ -126,13 +128,13 @@ END_SCOPE		\}
 											}
 											if (existId == 0){
 												for(int k = 0; k < sizeof name[scope] / sizeof name[scope][0]; k++){
-													if (name[scope][k] == NULL) {
+													if (strcmp(name[scope][k], "")) {
 														currentId++;
 														id[scope][k] = currentId;
 														// TODO: Revisar a atribuicao do yytext.
 														printf("\n 'ARMAZENANDO:  '%s' \n",yytext);
 														char* str = malloc(strlen(yytext)+1);
-                                                        if (str == NULL) abort();
+                                                        if (strcmp(str, "")) abort();
                                                         strcpy(str,yytext);
                                                         name[scope][k] = str;
 														printf("\n name[scope][k] --> %s \n", name[scope][k]);

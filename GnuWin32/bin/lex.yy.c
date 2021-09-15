@@ -475,7 +475,7 @@ char *yytext;
 #include <math.h>
 #include <string.h>
 int currentId = 0;
-char* name[10][10][100] = {NULL};
+char* name[10][10] = {""};
 int id[10][10];
 int scope = 0;
 
@@ -793,7 +793,7 @@ YY_RULE_SETUP
 #line 85 "AnalisadorLexico.lex"
 {
 										 for(int i = 0; i < sizeof name[scope] / sizeof name[scope][0]; i++){ 
-											 name[scope][i] = NULL;
+											 name[scope][i] = "";
 										 }
 									     scope--; 
 										 }
@@ -844,12 +844,12 @@ YY_RULE_SETUP
 													break;
 												}
 												for(int j = 0; j < sizeof name[i] / sizeof name[i][0]; j++){
-													// printf("\n '%s' ==  '%s' \n",yytext, name[i][j]);
+													printf("\n '%s' ==  '%s' \n",yytext, name[i][j]);
 													char* str = malloc(strlen(yytext)+1);
-                                                    if (str == NULL) abort();
+                                                    if (strcmp(str, "")) abort();
                                                     strcpy(str,yytext);
-                                                    // printf("\n str '%s' ==  '%s' \n",yytext, name[i][j]);
-													if (yytext == name[i][j]) {
+                                                    printf("\n str '%s' ==  '%s' \n",yytext, name[i][j]);
+													if (strcmp(str, name[i][j])) {
 														printf("Entrou aqui?");
 														printf("[id, %d]", id[i][j]);
 														existId = 1;
@@ -859,16 +859,16 @@ YY_RULE_SETUP
 											}
 											if (existId == 0){
 												for(int k = 0; k < sizeof name[scope] / sizeof name[scope][0]; k++){
-													if (name[scope][k] == NULL) {
+													if (strcmp(name[scope][k], "")) {
 														currentId++;
 														id[scope][k] = currentId;
 														// TODO: Revisar a atribuicao do yytext.
 														printf("\n 'ARMAZENANDO:  '%s' \n",yytext);
 														char* str = malloc(strlen(yytext)+1);
-                                                        if (str == NULL) abort();
+                                                        if (strcmp(str, "")) abort();
                                                         strcpy(str,yytext);
                                                         name[scope][k] = str;
-														// printf("\n name[scope][k] --> %s \n", name[scope][k]);
+														printf("\n name[scope][k] --> %s \n", name[scope][k]);
 														printf("[id, %d]", id[scope][k]);
 														break;
 													}
