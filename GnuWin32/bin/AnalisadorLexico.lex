@@ -66,7 +66,8 @@ ID				[a-z|A-Z][a-z0-9|A-Z0-9]*
 FUNCTION 		[a-z|A-Z]*\ ?\(.*\)
 STRING			\".*\"
 COMMENT			\/\/.*
-RESERVED		while|if|else|switch|for|return|null|int|float|double|String|bool|break|case|void|#include|printf|getch|scanf
+RESERVED		while|if|else|switch|for|return|null|break|case|void|#include|printf|getch|scanf
+TYPE			int|float|double|String|bool
 START_SCOPE  	\{
 END_SCOPE		\}
 
@@ -96,8 +97,6 @@ END_SCOPE		\}
 
 ^\*\ ?\(?{ID}\)?						{printf("[pointer_value, %s]", yytext);}
 
-{FUNCTION}								{printf("[function, %s]", yytext);}
-
 {DIGIT}*"."{DIGIT}* 					{printf("[num, %.2f]", atof(yytext));}
 
 {DIGIT}+ 								{printf("[num, %d]", atoi(yytext));}
@@ -106,7 +105,7 @@ END_SCOPE		\}
 
 {RESERVED}								{printf("[reserved_word, %s]", yytext);}
 
-{RESERVED}\ *?.*\,?\ ?{ID}				{	for (int k = 0; k < sizeof name[scope] / sizeof name[scope][0]; k++){
+{TYPE}\ *?.*\,?\ ?{ID}				{	for (int k = 0; k < sizeof name[scope] / sizeof name[scope][0]; k++){
 												if (strcmp(name[scope][k], "") == 0) {
 													
 													// Handle space.
@@ -122,48 +121,74 @@ END_SCOPE		\}
 													printf("[reserved_word, %s]", printPtr);
 													
 													// Handle comma.
-													 if (strchr(str, ',') != NULL) {
-													     k--;
-													     char* strComma;
-													     while(strchr(str, ',') != NULL) {
-        													char delimComma[] = ",";
-        													strComma =  malloc(strlen(str)+1);
-        													strcpy(strComma, str);
-        													printf("\n strComma Antes --> '%s'\n", strComma);
-        													lenYytext = strlen(str);
-        													printf("\n lenYytext --> '%d'\n", lenYytext);
-        													ptr = strtok(strComma, delimComma);
-        													printPtr =  malloc(strlen(ptr)+1);
-        													strcpy(printPtr, ptr);
-        													currentId++;
-        													k++;
-    													    id[scope][k] = currentId;
-        													name[scope][k] = printPtr;
-        													printf("[printPtr, %s]", printPtr);
-        													lenPtr = strlen(ptr);
-        													strncpy(strComma, str + (lenPtr + 1), lenYytext);
-													     }
-    													for (int i = 0; i < strlen(strComma); i++) { 
-        													if (strComma[i] != ' ') {
-        													   //char* printStr =  malloc(strlen(strComma)+1);
-        													    strncpy(strComma, strComma + i, strlen(strComma));
-            													printf("\n strComma Depois --> '%s'\n", strComma);
-            													currentId++;
-            													k++;
-            													id[scope][k] = currentId;
-            													name[scope][k] = strComma;
-            													//printf("\n name[scope][k] --> '%s' \n", name[scope][k]);
-            													printf("[id, %d]", id[scope][k]);
-            													break;
+													if (strchr(str, ',') != NULL) {
+													    k--;
+													    char* strComma;
+													    while(strchr(str, ',') != NULL) {
+	    													char delimComma[] = ",";
+	    													strComma =  malloc(strlen(str)+1);
+	    													strcpy(strComma, str);
+	    													//printf("\n strComma Antes --> '%s'\n", strComma);
+	    													lenYytext = strlen(str);
+	    													//printf("\n lenYytext --> '%d'\n", lenYytext);
+	    													ptr = strtok(strComma, delimComma);
+	    													printPtr =  malloc(strlen(ptr)+1);
+	    													strcpy(printPtr, ptr);
+	    													for (int i = 0; i < strlen(printPtr); i++) { 
+	        													if (printPtr[i] != ' ') {
+	        													   //char* printStr =  malloc(strlen(printPtr)+1);
+	        													    strncpy(printPtr, printPtr + i, strlen(printPtr));
+	            													//printf("\n printPtr Depois --> '%s'\n", printPtr);
+	            													currentId++;
+	            													k++;
+	            													id[scope][k] = currentId;
+	            													name[scope][k] = printPtr;
+	            													//printf("\n name[scope][k] --> '%s' \n", name[scope][k]);
+	            													printf("[id, %d]", id[scope][k]);
+	            													break;
+	        													}
 													        }
-        												}
-    												} else {
-    												    currentId++;
-            											id[scope][k] = currentId;
-            											name[scope][k] = str;
-            											//printf("\n name[scope][k] --> '%s' \n", name[scope][k]);
-            											printf("[id, %d]", id[scope][k]);
-    												}
+	    													//currentId++;
+	    													//k++;
+														    //id[scope][k] = currentId;
+	    													//name[scope][k] = printPtr;
+	    													//printf("[id, %d]", id[scope][k]);
+	    													//printf("[printPtr, %s]", printPtr);
+	    													lenPtr = strlen(ptr);
+	    													strncpy(strComma, str + (lenPtr + 1), lenYytext);
+	    													str =  malloc(strlen(strComma)+1);
+	    													strncpy(str, strComma, strlen(strComma));
+													    }
+													    if (str[0] == ' ') {
+	    													for (int i = 0; i < strlen(str); i++) { 
+	        													if (str[i] != ' ') {
+	        													   //char* printStr =  malloc(strlen(str)+1);
+	        													    strncpy(str, str + i, strlen(str));
+	            													//printf("\n str Depois --> '%s'\n", str);
+	            													currentId++;
+	            													k++;
+	            													id[scope][k] = currentId;
+	            													name[scope][k] = str;
+	            													//printf("\n name[scope][k] --> '%s' \n", name[scope][k]);
+	            													printf("[id, %d]", id[scope][k]);
+	            													break;
+														        }
+	        												    }
+	        											} else {
+	        												    currentId++;
+	        													k++;
+	        													id[scope][k] = currentId;
+	        													name[scope][k] = strComma;
+	        													//printf("\n name[scope][k] --> '%s' \n", name[scope][k]);
+	        													printf("[id, %d]", id[scope][k]);
+	        												}
+													} else {
+													    currentId++;
+	        											id[scope][k] = currentId;
+	        											name[scope][k] = str;
+	        											//printf("\n name[scope][k] --> '%s' \n", name[scope][k]);
+	        											printf("[id, %d]", id[scope][k]);
+													}
 													break;
 												}
 											}
@@ -198,11 +223,11 @@ END_SCOPE		\}
 
 "=" 									{printf("[Equal_OP, %s]", yytext);}
 
-"("|"{"									{{printf("[Simbolo, %s]", yytext);}}
+"("|"{"									{printf("[Simbolo, %s]", yytext);}
 
-")"|"}"									{{printf("[Simbolo, %s]\n", yytext);}}
+")"|"}"									{printf("[Simbolo, %s]\n", yytext);}
 
-{STRING}								{{printf("[string_literal, %s]", yytext);}}
+{STRING}								{printf("[string_literal, %s]", yytext);}
 
 ";" 									{printf("\n");}
 
