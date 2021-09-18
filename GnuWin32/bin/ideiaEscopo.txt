@@ -1,21 +1,7 @@
-for
-
-if (RESERVED == for)
-
-
-
-
-v++;
-
-
-if(v > 5)
-
-
-// [{, a = 2, }]
-
+Exemplo
 int a = 2
 
-if(alguma > 2) {
+if(a > 0) {
 	int b = 0;
 	int a = 3;
 	if(outraCoisa > 2) {
@@ -25,8 +11,8 @@ if(alguma > 2) {
 		
 }
     linha == escopo/ coluna == nomeVar
+	
 nome[][]
-
 
 [a],
 [b, a],

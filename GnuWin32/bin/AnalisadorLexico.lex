@@ -11,7 +11,7 @@
 #include <string.h>
 int currentId = 0;
 // TODO: PROBLEMA NA MATRIZ, Soh preenche o primeiro elemento
-char* name[10][10] = {""};
+char* name[10][10] = {{"", "", "", "", "", "", "", "", "", ""}, {"", "", "", "", "", "", "", "", "", ""}, {"", "", "", "", "", "", "", "", "", ""}, {"", "", "", "", "", "", "", "", "", ""}, {"", "", "", "", "", "", "", "", "", ""}, {"", "", "", "", "", "", "", "", "", ""}, {"", "", "", "", "", "", "", "", "", ""}, {"", "", "", "", "", "", "", "", "", ""}, {"", "", "", "", "", "", "", "", "", ""}, {"", "", "", "", "", "", "", "", "", ""}};
 int id[10][10];
 int scope = 0;
 
@@ -104,44 +104,46 @@ END_SCOPE		\}
 
 {RESERVED}								{printf("[reserved_word, %s]", yytext);}
 
-{ID} 									{ printf("\n yytext -->  %s \n", yytext);
-										  printf("\n scope --> %d \n", scope);
-											int existId = 0;
-											for(int i = scope; i >= 0; i--) {
-												if(existId == 1) {
+{RESERVED}\ ?{ID}						{	for (int k = 0; k < sizeof name[scope] / sizeof name[scope][0]; k++){
+												if (strcmp(name[scope][k], "") == 0) {
+													currentId++;
+													id[scope][k] = currentId;
+													char delim[] = " ";
+													char* str =  malloc(strlen(yytext)+1);
+													strcpy(str, yytext);
+													int lenYytext = strlen(yytext);
+													char* ptr = strtok(str, delim);
+													char* printPtr =  malloc(strlen(ptr)+1);
+													strcpy(printPtr, ptr);
+													int lenPtr = strlen(ptr);
+													strncpy(str, yytext + (lenPtr + 1), lenYytext);
+													name[scope][k] = str;
+													printf("[reserved_word, %s][id, %d]", printPtr, id[scope][k]);
 													break;
 												}
-												for(int j = 0; j < sizeof name[i] / sizeof name[i][0]; j++){
-													printf("\n '%s' ==  '%s' \n",yytext, name[i][j]);
+											}
+										}
+
+{ID} 									{ int existId = 0; // 0 --> Nao existe && 1 --> Existe.
+											// Verificar se o elemento jah existe na matriz.
+											for (int i = scope; i >= 0; i--) {
+												if (existId == 1) {
+													break;
+												}
+												for (int j = 0; j < sizeof name[i] / sizeof name[i][0]; j++){
+													//printf("\n yytext '%s' == name[i][j] '%s' \n", yytext, name[i][j]);
 													char* str = malloc(strlen(yytext)+1);
-                                                    if (strcmp(str, "")) abort();
-                                                    strcpy(str,yytext);
-                                                    printf("\n str '%s' ==  '%s' \n",yytext, name[i][j]);
-													// TODO: Verificar strcmp.
-													if (strcmp(str, name[i][j])) {
-														printf("Entrou aqui?");
+                                                    //if (strcmp(str, "") == 0) abort();
+                                                    strcpy(str, yytext);
+													if (strcmp(str, name[i][j]) == 0) {
 														printf("[id, %d]", id[i][j]);
 														existId = 1;
 														break;
 													}
 												}
 											}
-											if (existId == 0){
-												for(int k = 0; k < sizeof name[scope] / sizeof name[scope][0]; k++){
-													if (strcmp(name[scope][k], "")) {
-														currentId++;
-														id[scope][k] = currentId;
-														// TODO: Revisar a atribuicao do yytext.
-														printf("\n 'ARMAZENANDO:  '%s' \n",yytext);
-														char* str = malloc(strlen(yytext)+1);
-                                                        if (strcmp(str, "")) abort();
-                                                        strcpy(str,yytext);
-                                                        name[scope][k] = str;
-														printf("\n name[scope][k] --> %s \n", name[scope][k]);
-														printf("[id, %d]", id[scope][k]);
-														break;
-													}
-												}
+											if (existId == 0){ // Elemento nao encontrado.
+												printf("[Variavel %s nao encontrada]", yytext);
 											}
 										}
 
@@ -151,7 +153,9 @@ END_SCOPE		\}
 
 "=" 									{printf("[Equal_OP, %s]", yytext);}
 
-"("|")"|"{"|"}"							{{printf("[Simbolo, %s]", yytext);}}
+"("|"{"									{{printf("[Simbolo, %s]", yytext);}}
+
+")"|"}"									{{printf("[Simbolo, %s]\n", yytext);}}
 
 {STRING}								{{printf("[string_literal, %s]", yytext);}}
 
