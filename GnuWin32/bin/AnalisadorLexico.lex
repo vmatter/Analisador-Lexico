@@ -108,9 +108,7 @@ END_SCOPE		\}
 
 {LOGIC}									{printf("[Logic_op, %s]", yytext);}
 
-{FUNCTION}								{	
-											printf("\n Entrou aqui???\n");
-											for (int k = 0; k < sizeof name[scope] / sizeof name[scope][0]; k++){
+{FUNCTION}								{	for (int k = 0; k < sizeof name[scope] / sizeof name[scope][0]; k++){
 												if (strcmp(name[scope][k], "") == 0) {
 													
 													// Handle space.
@@ -122,18 +120,20 @@ END_SCOPE		\}
 													char* printPtr =  malloc(strlen(ptr)+1);
 													strcpy(printPtr, ptr);
 													int lenPtr = strlen(ptr);
-													strncpy(str, yytext + (lenPtr + 1), lenYytext - 3);
+													strncpy(str, yytext + (lenPtr + 1), lenYytext);
+													str[strlen(str) - 1] = '\0';
 													printf("[reserved_word, %s]", printPtr);
 													currentId++;
 	        										id[scope][k] = currentId;
 	        										name[scope][k] = str;
-	        										printf("\n name[scope][k] --> '%s' \n", name[scope][k]);
+	        										//printf("\n name[scope][k] --> '%s' \n", name[scope][k]);
 	        										printf("[id, %d]", id[scope][k]);
+	        										break;
 												}
 											}
 										}
 
-{TYPE}\ *?.*\,?\ ?{ID}				{	for (int k = 0; k < sizeof name[scope] / sizeof name[scope][0]; k++){
+{TYPE}\ *?.*\,?\ ?{ID}			{	for (int k = 0; k < sizeof name[scope] / sizeof name[scope][0]; k++){
 												if (strcmp(name[scope][k], "") == 0) {
 													
 													// Handle space.
@@ -245,7 +245,7 @@ END_SCOPE		\}
 											}
 										}
 
-"+"|"-"|"*"|"/" 						{printf("[Arith_Op, %s]", yytext);}
+"++"|"+"|"--"|"-"|"*"|"/" 				{printf("[Arith_Op, %s]", yytext);}
 
 "<"|"<="|"=="|"!="|">="|">" 			{printf("[Relational_Op, %s]", yytext);}
 
@@ -253,11 +253,11 @@ END_SCOPE		\}
 
 {STRING}								{printf("[string_literal, %s]", yytext);}
 
-";" 									{printf("\n");}
+";"										{printf("\n");}
 
 [ \t\n]+
 
-","|"&"|"("|"{"|")"|"}"										
+","|"&"|"("|"{"|")"|"}"|"["|"]"									
 
 .	 									{printf("Caractere nao reconhecido: %s\n", yytext);}
 
