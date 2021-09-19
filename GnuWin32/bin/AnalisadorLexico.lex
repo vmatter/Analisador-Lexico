@@ -63,11 +63,12 @@ int scope = 0;
 %x C_COMMENT
 DIGIT			[0-9]
 ID				[a-z|A-Z][a-z0-9|A-Z0-9]*
-FUNCTION 		[a-z|A-Z]*\ ?\(.*\)
+FUNCTION 		int|float|double|string|bool|void\ +[a-z|A-Z][a-z0-9|A-Z0-9]*\ ?\(
 STRING			\".*\"
 COMMENT			\/\/.*
-RESERVED		while|if|else|switch|for|return|null|break|case|void|#include|printf|getch|scanf
-TYPE			int|float|double|String|bool
+RESERVED		while|if|else|switch|for|return|NULL|break|case|#include|printf|clrscr|getch|scanf
+TYPE			int|float|double|string|bool
+LOGIC			&&|!|"||"
 START_SCOPE  	\{
 END_SCOPE		\}
 
@@ -91,7 +92,7 @@ END_SCOPE		\}
 									     scope--; 
 										 }
 
-\<.+\>									{printf("[include, %s]", yytext);}
+\<.+\>									{printf("[include, %s]\n", yytext);}
 
 \ "*"\ ?\(?{ID}\)?						{printf("[pointer_value, %s]", yytext);}
 
@@ -104,6 +105,33 @@ END_SCOPE		\}
 {RESERVED}\ ?"*"\ ?{ID}					{printf("[pointer_declaration, %s]", yytext);}
 
 {RESERVED}								{printf("[reserved_word, %s]", yytext);}
+
+{LOGIC}									{printf("[Logic_op, %s]", yytext);}
+
+{FUNCTION}								{	
+											printf("\n Entrou aqui???\n");
+											for (int k = 0; k < sizeof name[scope] / sizeof name[scope][0]; k++){
+												if (strcmp(name[scope][k], "") == 0) {
+													
+													// Handle space.
+													char delim[] = " ";
+													char* str =  malloc(strlen(yytext)+1);
+													strcpy(str, yytext);
+													int lenYytext = strlen(yytext);
+													char* ptr = strtok(str, delim);
+													char* printPtr =  malloc(strlen(ptr)+1);
+													strcpy(printPtr, ptr);
+													int lenPtr = strlen(ptr);
+													strncpy(str, yytext + (lenPtr + 1), lenYytext - 3);
+													printf("[reserved_word, %s]", printPtr);
+													currentId++;
+	        										id[scope][k] = currentId;
+	        										name[scope][k] = str;
+	        										printf("\n name[scope][k] --> '%s' \n", name[scope][k]);
+	        										printf("[id, %d]", id[scope][k]);
+												}
+											}
+										}
 
 {TYPE}\ *?.*\,?\ ?{ID}				{	for (int k = 0; k < sizeof name[scope] / sizeof name[scope][0]; k++){
 												if (strcmp(name[scope][k], "") == 0) {
@@ -223,17 +251,13 @@ END_SCOPE		\}
 
 "=" 									{printf("[Equal_OP, %s]", yytext);}
 
-"("|"{"									{printf("[Simbolo, %s]", yytext);}
-
-")"|"}"									{printf("[Simbolo, %s]\n", yytext);}
-
 {STRING}								{printf("[string_literal, %s]", yytext);}
 
 ";" 									{printf("\n");}
 
 [ \t\n]+
 
-","										
+","|"&"|"("|"{"|")"|"}"										
 
 .	 									{printf("Caractere nao reconhecido: %s\n", yytext);}
 
