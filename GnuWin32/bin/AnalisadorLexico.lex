@@ -10,55 +10,12 @@
 #include <math.h>
 #include <string.h>
 int currentId = 0;
-// TODO: PROBLEMA NA MATRIZ, Soh preenche o primeiro elemento
 char* name[10][10] = {{"", "", "", "", "", "", "", "", "", ""}, {"", "", "", "", "", "", "", "", "", ""}, {"", "", "", "", "", "", "", "", "", ""}, {"", "", "", "", "", "", "", "", "", ""}, {"", "", "", "", "", "", "", "", "", ""}, {"", "", "", "", "", "", "", "", "", ""}, {"", "", "", "", "", "", "", "", "", ""}, {"", "", "", "", "", "", "", "", "", ""}, {"", "", "", "", "", "", "", "", "", ""}, {"", "", "", "", "", "", "", "", "", ""}};
 int id[10][10];
 int scope = 0;
 
 %}
 
-/* Variáveis ou identificadores: este analisador léxico deve ser capaz de reconhecer
-* nomes de variáveis, funções, parâmetros de funções em um código fonte. Além disso,
-* deve ser tratada a análise de escopo para a correta definição dos identificadores:
-*/
-
-/* Constantes numéricas (números inteiros): este analisador léxico deve ser capaz de
-* reconhecer um número inteiro qualquer e convertê-lo para os respectivos tokens:*/
-
-/* Palavras reservadas: este analisador léxico deve ser capaz de reconhecer palavras
-* reservadas. Por exemplo, do, while, if, else, switch, for, return, null, int, float, double,
-* string, bool, break, case, etc e convertê-las para os respectivos tokens:
-*/
-
-/* Operadores relacionais: este analisador léxico deve ser capaz de reconhecer os
-* operadores relacionais: <, <=, ==, !=, >=, > e convertê-los para os respectivos tokens:*/
-
-/* Números de ponto flutuante (números reais): este analisador léxico deve ser capaz de
-* reconhecer números reais quaisquer e convertê-los para os respectivos tokens: 
-*/
-
-/* Remoção de espaços em branco e comentários: este analisador léxico deve ser capaz
-* de reconhecer espaços em branco e comentários no código fonte e removê-los
-* (ignorá-los) .
-*/
-
-/* Strings:este analisador léxico deve ser capaz de reconhecer os strings e convertê-las
-* para seus respectivos tokens:
-*/
-
-/* Operadores lógicos: este analisador léxico deve ser capaz de reconhecer os operadores
-* lógicos:|| && e convertê-los para os respectivos tokens:
-*/
-
-/* Demais caracteres:este analisador léxico deve ser capaz de reconhecer os caracteres:
-* = ( ) { } , ; e convertê-los para seus respectivos tokens:
-*/
-
-
-
-/* TODO:
-* 		Armazenar variável com seu ID, quando ela aparecer novamente usar o mesmo ID já criado.
-*/
 
 %x C_COMMENT
 DIGIT			[0-9]
@@ -95,10 +52,6 @@ HAS_SEMICOLON	^\;
 
 \<.+\>									{printf("[include, %s]\n", yytext);}
 
-\ "*"\ ?\(?{ID}\)?						{printf("[pointer_value, %s]", yytext);}
-
-^\*\ ?\(?{ID}\)?						{printf("[pointer_value, %s]", yytext);}
-
 {DIGIT}*"."{DIGIT}* 					{printf("[num, %.2f]", atof(yytext));}
 
 {DIGIT}+ 								{printf("[num, %d]", atoi(yytext));}
@@ -127,15 +80,13 @@ HAS_SEMICOLON	^\;
 													currentId++;
 	        										id[scope][k] = currentId;
 	        										name[scope][k] = str;
-	        										//printf("\n name[scope][k] --> '%s' \n", name[scope][k]);
 	        										printf("[id, %d]", id[scope][k]);
 	        										break;
 												}
 											}
 										}
 										
-{TYPE}\ *?.*\,?\ ?{ID}\ *\)		{		//printf("\n ENTROU AKI!!! \n");
-										yytext[strlen(yytext) - 1] = '\0';
+{TYPE}\ *?.*\,?\ ?{ID}\ *\)		{		yytext[strlen(yytext) - 1] = '\0';
 										for (int k = 0; k < sizeof name[scope] / sizeof name[scope][0]; k++){
 											if (strcmp(name[scope][k], "") == 0) {
 												
@@ -161,24 +112,18 @@ HAS_SEMICOLON	^\;
 														// Aloca memoria.
 														strComma =  malloc(strlen(str)+1);
 														strcpy(strComma, str);
-														//printf("\n strComma Antes --> '%s'\n", strComma);
 														lenYytext = strlen(str);
-														//printf("\n lenYytext --> '%d'\n", lenYytext);
 														// Separa elements pela virgula.
 														ptr = strtok(strComma, delimComma);
 														printPtr =  malloc(strlen(ptr)+1);
 														strcpy(printPtr, ptr);
 														for (int i = 0; i < strlen(printPtr); i++) { 
-															// TODO: Validar asterisco.
 															if (printPtr[i] != ' ' && printPtr[i] != '*') {
-															   //char* printStr =  malloc(strlen(printPtr)+1);
 																strncpy(printPtr, printPtr + i, strlen(printPtr));
-																//printf("\n printPtr Depois --> '%s'\n", printPtr);
 																currentId++;
 																k++;
 																id[scope][k] = currentId;
 																name[scope][k] = printPtr;
-																//printf("\n name[scope][k] --> '%s' \n", name[scope][k]);
 																printf("[id, %d]", id[scope][k]);
 																break;
 															}
@@ -199,44 +144,33 @@ HAS_SEMICOLON	^\;
 														int lenPtr = strlen(ptr);
 														strncpy(str2, str + (lenPtr + 1), lenYytext);
 														printf("[reserved_word, %s]", printPtr);
-														//printf("\nstr --> %s \n", str2);
 													}
 													if (str2[0] == ' ' || str2[0] == '*') {
 														for (int i = 0; i < strlen(str2); i++) { 
 															if (str2[i] != ' ' && str2[i] != '*') {
-															   //char* printStr =  malloc(strlen(str)+1);
 																strncpy(str2, str2 + i, strlen(str2));
-																//printf("\n str Depois --> '%s'\n", str);
 																currentId++;
 																k++;
-																//printf("\n ESTOY AKI!!! \n");
 																id[scope][k] = currentId;
 																name[scope][k] = str2;
-																//printf("\n name[scope][k] --> '%s' \n", name[scope][k]);
 																printf("[id, %d]", id[scope][k]);
 																break;
 															}
 														}
 													} else {
-													    //printf("\n ESTOY AKI!!! \n");
 															currentId++;
 															k++;
 															id[scope][k] = currentId;
 															name[scope][k] = strComma;
-															//printf("\n name[scope][k] --> '%s' \n", name[scope][k]);
 															printf("[id, %d]", id[scope][k]);
 														}
 												} else {
 												    for (int i = 0; i < strlen(str); i++) { 
 															if (str[i] != ' ' && str[i] != '*') {
-															   //char* printStr =  malloc(strlen(str)+1);
 																strncpy(str, str + i, strlen(str));
-																//printf("\n str Depois --> '%s'\n", str);
 																currentId++;
-																//printf("\n ESTOY AKI!!! \n");
 																id[scope][k] = currentId;
 																name[scope][k] = str;
-																//printf("\n~~~~~~\n");
 																printf("[id, %d]", id[scope][k]);
 																break;
 															}
@@ -270,32 +204,21 @@ HAS_SEMICOLON	^\;
 	    													char delimComma[] = ",";
 	    													strComma =  malloc(strlen(str)+1);
 	    													strcpy(strComma, str);
-	    													//printf("\n strComma Antes --> '%s'\n", strComma);
 	    													lenYytext = strlen(str);
-	    													//printf("\n lenYytext --> '%d'\n", lenYytext);
 	    													ptr = strtok(strComma, delimComma);
 	    													printPtr =  malloc(strlen(ptr)+1);
 	    													strcpy(printPtr, ptr);
 	    													for (int i = 0; i < strlen(printPtr); i++) { 
 	        													if (printPtr[i] != ' ') {
-	        													   //char* printStr =  malloc(strlen(printPtr)+1);
 	        													    strncpy(printPtr, printPtr + i, strlen(printPtr));
-	            													//printf("\n printPtr Depois --> '%s'\n", printPtr);
 	            													currentId++;
 	            													k++;
 	            													id[scope][k] = currentId;
 	            													name[scope][k] = printPtr;
-	            													//printf("\n name[scope][k] --> '%s' \n", name[scope][k]);
 	            													printf("[id, %d]", id[scope][k]);
 	            													break;
 	        													}
 													        }
-	    													//currentId++;
-	    													//k++;
-														    //id[scope][k] = currentId;
-	    													//name[scope][k] = printPtr;
-	    													//printf("[id, %d]", id[scope][k]);
-	    													//printf("[printPtr, %s]", printPtr);
 	    													lenPtr = strlen(ptr);
 	    													strncpy(strComma, str + (lenPtr + 1), lenYytext);
 	    													str =  malloc(strlen(strComma)+1);
@@ -304,14 +227,11 @@ HAS_SEMICOLON	^\;
 													    if (str[0] == ' ') {
 	    													for (int i = 0; i < strlen(str); i++) { 
 	        													if (str[i] != ' ') {
-	        													   //char* printStr =  malloc(strlen(str)+1);
 	        													    strncpy(str, str + i, strlen(str));
-	            													//printf("\n str Depois --> '%s'\n", str);
 	            													currentId++;
 	            													k++;
 	            													id[scope][k] = currentId;
 	            													name[scope][k] = str;
-	            													//printf("\n name[scope][k] --> '%s' \n", name[scope][k]);
 	            													printf("[id, %d]", id[scope][k]);
 	            													break;
 														        }
@@ -321,20 +241,15 @@ HAS_SEMICOLON	^\;
 	        													k++;
 	        													id[scope][k] = currentId;
 	        													name[scope][k] = strComma;
-	        													//printf("\n name[scope][k] --> '%s' \n", name[scope][k]);
 	        													printf("[id, %d]", id[scope][k]);
 	        												}
 													} else {
 													    for (int i = 0; i < strlen(str); i++) { 
 															if (str[i] != ' ' && str[i] != '*') {
-															   //char* printStr =  malloc(strlen(str)+1);
 																strncpy(str, str + i, strlen(str));
-																//printf("\n str Depois --> '%s'\n", str);
 																currentId++;
-																//printf("\n ESTOY AKI!!! \n");
 																id[scope][k] = currentId;
 																name[scope][k] = str;
-																//printf("\n~~~~~~\n");
 																printf("[id, %d]", id[scope][k]);
 																break;
 															}
@@ -345,7 +260,7 @@ HAS_SEMICOLON	^\;
 											}
 										}
 										
-{TYPE}\ *?{ID}					{	for (int k = 0; k < sizeof name[scope] / sizeof name[scope][0]; k++){
+{TYPE}\ *?\*?\ *?{ID}					{	for (int k = 0; k < sizeof name[scope] / sizeof name[scope][0]; k++){
 												if (strcmp(name[scope][k], "") == 0) {
 													
 													// Handle space.
@@ -368,32 +283,21 @@ HAS_SEMICOLON	^\;
 															char delimComma[] = ",";
 															strComma =  malloc(strlen(str)+1);
 															strcpy(strComma, str);
-															//printf("\n strComma Antes --> '%s'\n", strComma);
 															lenYytext = strlen(str);
-															//printf("\n lenYytext --> '%d'\n", lenYytext);
 															ptr = strtok(strComma, delimComma);
 															printPtr =  malloc(strlen(ptr)+1);
 															strcpy(printPtr, ptr);
 															for (int i = 0; i < strlen(printPtr); i++) { 
 																if (printPtr[i] != ' ') {
-																   //char* printStr =  malloc(strlen(printPtr)+1);
 																	strncpy(printPtr, printPtr + i, strlen(printPtr));
-																	//printf("\n printPtr Depois --> '%s'\n", printPtr);
 																	currentId++;
 																	k++;
 																	id[scope][k] = currentId;
 																	name[scope][k] = printPtr;
-																	//printf("\n name[scope][k] --> '%s' \n", name[scope][k]);
 																	printf("[id, %d]", id[scope][k]);
 																	break;
 																}
 															}
-															//currentId++;
-															//k++;
-															//id[scope][k] = currentId;
-															//name[scope][k] = printPtr;
-															//printf("[id, %d]", id[scope][k]);
-															//printf("[printPtr, %s]", printPtr);
 															lenPtr = strlen(ptr);
 															strncpy(strComma, str + (lenPtr + 1), lenYytext);
 															str =  malloc(strlen(strComma)+1);
@@ -402,14 +306,11 @@ HAS_SEMICOLON	^\;
 														if (str[0] == ' ') {
 															for (int i = 0; i < strlen(str); i++) { 
 																if (str[i] != ' ') {
-																   //char* printStr =  malloc(strlen(str)+1);
 																	strncpy(str, str + i, strlen(str));
-																	//printf("\n str Depois --> '%s'\n", str);
 																	currentId++;
 																	k++;
 																	id[scope][k] = currentId;
 																	name[scope][k] = str;
-																	//printf("\n name[scope][k] --> '%s' \n", name[scope][k]);
 																	printf("[id, %d]", id[scope][k]);
 																	break;
 																}
@@ -419,20 +320,15 @@ HAS_SEMICOLON	^\;
 																k++;
 																id[scope][k] = currentId;
 																name[scope][k] = strComma;
-																//printf("\n name[scope][k] --> '%s' \n", name[scope][k]);
 																printf("[id, %d]", id[scope][k]);
 															}
 													} else {
 														for (int i = 0; i < strlen(str); i++) { 
 															if (str[i] != ' ' && str[i] != '*') {
-															   //char* printStr =  malloc(strlen(str)+1);
 																strncpy(str, str + i, strlen(str));
-																//printf("\n str Depois --> '%s'\n", str);
 																currentId++;
-																//printf("\n ESTOY AKI!!! \n");
 																id[scope][k] = currentId;
 																name[scope][k] = str;
-																//printf("\n~~~~~~\n");
 																printf("[id, %d]", id[scope][k]);
 																break;
 															}
@@ -452,7 +348,6 @@ HAS_SEMICOLON	^\;
 												for (int j = 0; j < sizeof name[i] / sizeof name[i][0]; j++){
 													//printf("\n yytext '%s' == name[i][j] '%s' \n", yytext, name[i][j]);
 													char* str = malloc(strlen(yytext)+1);
-                                                    //if (strcmp(str, "") == 0) abort();
                                                     strcpy(str, yytext);
 													if (strcmp(str, name[i][j]) == 0) {
 														printf("[id, %d]", id[i][j]);
