@@ -71,6 +71,7 @@ TYPE			int|float|double|string|bool
 LOGIC			&&|!|"||"
 START_SCOPE  	\{
 END_SCOPE		\}
+HAS_SEMICOLON	^\;
 
 
 %%
@@ -132,8 +133,121 @@ END_SCOPE		\}
 												}
 											}
 										}
+										
+{TYPE}\ *?.*\,?\ ?{ID}\ *\)		{		//printf("\n ENTROU AKI!!! \n");
+										yytext[strlen(yytext) - 1] = '\0';
+										for (int k = 0; k < sizeof name[scope] / sizeof name[scope][0]; k++){
+											if (strcmp(name[scope][k], "") == 0) {
+												
+												// Handle space.
+												char delim[] = " ";
+												char* str =  malloc(strlen(yytext)+1);
+												char* str2 =  malloc(strlen(yytext)+1);
+												strcpy(str, yytext);
+												int lenYytext = strlen(yytext);
+												char* ptr = strtok(str, delim);
+												char* printPtr =  malloc(strlen(ptr)+1);
+												strcpy(printPtr, ptr);
+												int lenPtr = strlen(ptr);
+												strncpy(str, yytext + (lenPtr + 1), lenYytext);
+												printf("[reserved_word, %s]", printPtr);
+												
+												// Handle comma.
+												if (strchr(str, ',') != NULL) {
+													k--;
+													char* strComma;
+													while(strchr(str, ',') != NULL) {
+														char delimComma[] = ",";
+														// Aloca memoria.
+														strComma =  malloc(strlen(str)+1);
+														strcpy(strComma, str);
+														//printf("\n strComma Antes --> '%s'\n", strComma);
+														lenYytext = strlen(str);
+														//printf("\n lenYytext --> '%d'\n", lenYytext);
+														// Separa elements pela virgula.
+														ptr = strtok(strComma, delimComma);
+														printPtr =  malloc(strlen(ptr)+1);
+														strcpy(printPtr, ptr);
+														for (int i = 0; i < strlen(printPtr); i++) { 
+															// TODO: Validar asterisco.
+															if (printPtr[i] != ' ' && printPtr[i] != '*') {
+															   //char* printStr =  malloc(strlen(printPtr)+1);
+																strncpy(printPtr, printPtr + i, strlen(printPtr));
+																//printf("\n printPtr Depois --> '%s'\n", printPtr);
+																currentId++;
+																k++;
+																id[scope][k] = currentId;
+																name[scope][k] = printPtr;
+																//printf("\n name[scope][k] --> '%s' \n", name[scope][k]);
+																printf("[id, %d]", id[scope][k]);
+																break;
+															}
+														}
+														
+														lenPtr = strlen(ptr);
+														strncpy(strComma, str + (lenPtr + 1), lenYytext);
+														str =  malloc(strlen(strComma)+1);
+														strncpy(str, strComma, strlen(strComma));
+														
+														char delim[] = " ";
+														str2 =  malloc(strlen(str)+1);
+														strcpy(str2, str);
+														int lenYytext = strlen(str);
+														char* ptr = strtok(str2, delim);
+														char* printPtr =  malloc(strlen(ptr)+1);
+														strcpy(printPtr, ptr);
+														int lenPtr = strlen(ptr);
+														strncpy(str2, str + (lenPtr + 1), lenYytext);
+														printf("[reserved_word, %s]", printPtr);
+														//printf("\nstr --> %s \n", str2);
+													}
+													if (str2[0] == ' ' || str2[0] == '*') {
+														for (int i = 0; i < strlen(str2); i++) { 
+															if (str2[i] != ' ' && str2[i] != '*') {
+															   //char* printStr =  malloc(strlen(str)+1);
+																strncpy(str2, str2 + i, strlen(str2));
+																//printf("\n str Depois --> '%s'\n", str);
+																currentId++;
+																k++;
+																//printf("\n ESTOY AKI!!! \n");
+																id[scope][k] = currentId;
+																name[scope][k] = str2;
+																//printf("\n name[scope][k] --> '%s' \n", name[scope][k]);
+																printf("[id, %d]", id[scope][k]);
+																break;
+															}
+														}
+													} else {
+													    //printf("\n ESTOY AKI!!! \n");
+															currentId++;
+															k++;
+															id[scope][k] = currentId;
+															name[scope][k] = strComma;
+															//printf("\n name[scope][k] --> '%s' \n", name[scope][k]);
+															printf("[id, %d]", id[scope][k]);
+														}
+												} else {
+												    for (int i = 0; i < strlen(str); i++) { 
+															if (str[i] != ' ' && str[i] != '*') {
+															   //char* printStr =  malloc(strlen(str)+1);
+																strncpy(str, str + i, strlen(str));
+																//printf("\n str Depois --> '%s'\n", str);
+																currentId++;
+																//printf("\n ESTOY AKI!!! \n");
+																id[scope][k] = currentId;
+																name[scope][k] = str;
+																//printf("\n~~~~~~\n");
+																printf("[id, %d]", id[scope][k]);
+																break;
+															}
+													}
+												}
+												break;
+											}
+										}
+									}
 
-{TYPE}\ *?.*\,?\ ?{ID}			{	for (int k = 0; k < sizeof name[scope] / sizeof name[scope][0]; k++){
+{TYPE}\ *?.*\,\ ?{ID}			{	for (int k = 0; k < sizeof name[scope] / sizeof name[scope][0]; k++){
 												if (strcmp(name[scope][k], "") == 0) {
 													
 													// Handle space.
@@ -211,11 +325,118 @@ END_SCOPE		\}
 	        													printf("[id, %d]", id[scope][k]);
 	        												}
 													} else {
-													    currentId++;
-	        											id[scope][k] = currentId;
-	        											name[scope][k] = str;
-	        											//printf("\n name[scope][k] --> '%s' \n", name[scope][k]);
-	        											printf("[id, %d]", id[scope][k]);
+													    for (int i = 0; i < strlen(str); i++) { 
+															if (str[i] != ' ' && str[i] != '*') {
+															   //char* printStr =  malloc(strlen(str)+1);
+																strncpy(str, str + i, strlen(str));
+																//printf("\n str Depois --> '%s'\n", str);
+																currentId++;
+																//printf("\n ESTOY AKI!!! \n");
+																id[scope][k] = currentId;
+																name[scope][k] = str;
+																//printf("\n~~~~~~\n");
+																printf("[id, %d]", id[scope][k]);
+																break;
+															}
+													    }
+													}
+													break;
+												}
+											}
+										}
+										
+{TYPE}\ *?{ID}					{	for (int k = 0; k < sizeof name[scope] / sizeof name[scope][0]; k++){
+												if (strcmp(name[scope][k], "") == 0) {
+													
+													// Handle space.
+													char delim[] = " ";
+													char* str =  malloc(strlen(yytext)+1);
+													strcpy(str, yytext);
+													int lenYytext = strlen(yytext);
+													char* ptr = strtok(str, delim);
+													char* printPtr =  malloc(strlen(ptr)+1);
+													strcpy(printPtr, ptr);
+													int lenPtr = strlen(ptr);
+													strncpy(str, yytext + (lenPtr + 1), lenYytext);
+													printf("[reserved_word, %s]", printPtr);
+													
+													// Handle comma.
+													if (strchr(str, ',') != NULL) {
+														k--;
+														char* strComma;
+														while(strchr(str, ',') != NULL) {
+															char delimComma[] = ",";
+															strComma =  malloc(strlen(str)+1);
+															strcpy(strComma, str);
+															//printf("\n strComma Antes --> '%s'\n", strComma);
+															lenYytext = strlen(str);
+															//printf("\n lenYytext --> '%d'\n", lenYytext);
+															ptr = strtok(strComma, delimComma);
+															printPtr =  malloc(strlen(ptr)+1);
+															strcpy(printPtr, ptr);
+															for (int i = 0; i < strlen(printPtr); i++) { 
+																if (printPtr[i] != ' ') {
+																   //char* printStr =  malloc(strlen(printPtr)+1);
+																	strncpy(printPtr, printPtr + i, strlen(printPtr));
+																	//printf("\n printPtr Depois --> '%s'\n", printPtr);
+																	currentId++;
+																	k++;
+																	id[scope][k] = currentId;
+																	name[scope][k] = printPtr;
+																	//printf("\n name[scope][k] --> '%s' \n", name[scope][k]);
+																	printf("[id, %d]", id[scope][k]);
+																	break;
+																}
+															}
+															//currentId++;
+															//k++;
+															//id[scope][k] = currentId;
+															//name[scope][k] = printPtr;
+															//printf("[id, %d]", id[scope][k]);
+															//printf("[printPtr, %s]", printPtr);
+															lenPtr = strlen(ptr);
+															strncpy(strComma, str + (lenPtr + 1), lenYytext);
+															str =  malloc(strlen(strComma)+1);
+															strncpy(str, strComma, strlen(strComma));
+														}
+														if (str[0] == ' ') {
+															for (int i = 0; i < strlen(str); i++) { 
+																if (str[i] != ' ') {
+																   //char* printStr =  malloc(strlen(str)+1);
+																	strncpy(str, str + i, strlen(str));
+																	//printf("\n str Depois --> '%s'\n", str);
+																	currentId++;
+																	k++;
+																	id[scope][k] = currentId;
+																	name[scope][k] = str;
+																	//printf("\n name[scope][k] --> '%s' \n", name[scope][k]);
+																	printf("[id, %d]", id[scope][k]);
+																	break;
+																}
+																}
+														} else {
+																currentId++;
+																k++;
+																id[scope][k] = currentId;
+																name[scope][k] = strComma;
+																//printf("\n name[scope][k] --> '%s' \n", name[scope][k]);
+																printf("[id, %d]", id[scope][k]);
+															}
+													} else {
+														for (int i = 0; i < strlen(str); i++) { 
+															if (str[i] != ' ' && str[i] != '*') {
+															   //char* printStr =  malloc(strlen(str)+1);
+																strncpy(str, str + i, strlen(str));
+																//printf("\n str Depois --> '%s'\n", str);
+																currentId++;
+																//printf("\n ESTOY AKI!!! \n");
+																id[scope][k] = currentId;
+																name[scope][k] = str;
+																//printf("\n~~~~~~\n");
+																printf("[id, %d]", id[scope][k]);
+																break;
+															}
+														}
 													}
 													break;
 												}
