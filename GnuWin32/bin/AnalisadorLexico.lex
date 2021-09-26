@@ -53,7 +53,7 @@ HAS_SEMICOLON	^\;
 											for(int i = 0; i < sizeof name[scope] / sizeof name[scope][0]; i++){ 
 												name[scope][i] = "";
 											}
-											scope--; 
+											scope--;
 										}
 
 \<.+\>									{ 	// "Include" regex.
@@ -346,7 +346,7 @@ HAS_SEMICOLON	^\;
 													*/
 
 													char* str = malloc(strlen(yytext)+1);								// Allocates memory space.
-                                                    strcpy(str, yytext);												// Copies the string.
+													strcpy(str, yytext);												// Copies the string.
 													
 													// Verifies if the position value is the same as the str variable.
 													if (strcmp(str, name[i][j]) == 0) {	
