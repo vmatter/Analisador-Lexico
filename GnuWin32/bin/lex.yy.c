@@ -285,27 +285,26 @@ static void yy_fatal_error YY_PROTO(( yyconst char msg[] ));
 	*yy_cp = '\0'; \
 	yy_c_buf_p = yy_cp;
 
-#define YY_NUM_RULES 28
-#define YY_END_OF_BUFFER 29
-static yyconst short int yy_accept[160] =
+#define YY_NUM_RULES 27
+#define YY_END_OF_BUFFER 28
+static yyconst short int yy_accept[148] =
     {   0,
-        0,    0,    0,    0,   29,   27,   25,   25,   14,   27,
-       27,   26,   26,   20,   20,   20,   10,   20,   11,   24,
-       21,   22,   21,   19,   19,   19,   19,   19,   19,   19,
-       19,   19,   19,   19,   19,   19,   19,    7,   19,    8,
-        3,    5,    4,   25,   21,    0,   23,    0,   14,   20,
-       10,    1,    6,   10,   11,    0,   21,   19,   19,   19,
-       19,   19,   19,   19,   19,   19,   19,   19,   13,   19,
-       19,   19,   19,   19,   19,   19,   19,   14,    3,    2,
-        0,    6,    9,   19,   19,   19,   19,   19,   19,   19,
-       19,   19,    0,    0,   15,   19,   19,   19,   19,   19,
+        0,    0,    0,    0,   28,   26,   24,   24,   14,   26,
+       26,   25,   25,   19,   19,   19,   10,   19,   11,   23,
+       20,   21,   20,   18,   18,   18,   18,   18,   18,   18,
+       18,   18,   18,   18,   18,   18,   18,    7,   18,    8,
+        3,    5,    4,   24,   20,    0,   22,    0,   14,   19,
+       10,    1,    6,   10,   11,    0,   20,   18,   18,   18,
+       18,   18,   18,   18,   18,   18,   18,   18,   13,   18,
+       18,   18,   18,   18,   18,   18,   18,   14,    3,    2,
+        0,    6,    9,   18,   18,   18,   18,   18,   18,   18,
+       18,   18,    0,    0,   15,   18,   18,   18,   18,   18,
 
-       19,   19,    0,   19,   19,   19,   19,   19,    0,   12,
-        0,    0,    0,    0,   19,   18,   19,   19,   19,   19,
-       19,   19,   19,    0,   19,   19,   12,    0,    0,   18,
-        0,    0,   17,   19,    0,   16,   18,   18,   19,   19,
-       19,   19,    0,    0,    0,    0,   18,   18,   17,   17,
-       19,   19,    0,    0,    0,   15,    0,   13,    0
+       18,   18,    0,   18,   18,   18,   18,   18,    0,   12,
+        0,    0,    0,   18,   17,   18,   18,   18,   18,   18,
+       18,   18,    0,   18,   18,   12,    0,   17,    0,   16,
+       17,   17,   18,   18,   18,   18,    0,    0,   17,   17,
+        0,    0,    0,   15,    0,   13,    0
     } ;
 
 static yyconst int yy_ec[256] =
@@ -349,51 +348,49 @@ static yyconst int yy_meta[51] =
         7,    7,    7,    7,    7,    7,    7,    1,    7,    1
     } ;
 
-static yyconst short int yy_base[170] =
+static yyconst short int yy_base[158] =
     {   0,
-        0,    0,   48,   49,  718,  719,   51,   54,  697,  710,
-      679,  706,  719,  719,  701,  698,  694,   50,   47,  719,
-      690,  689,  688,    0,  682,   23,   39,  666,  667,   30,
-      672,   36,  661,  670,   41,  661,  665,  719,  650,  719,
-        0,  719,  682,   70,  719,  691,  690,  656,  719,  719,
-      677,  719,    0,  676,   61,  671,  670,    0,  667,  649,
-      656,  644,  644,  640,  641,  643,  640,  637,   75,  636,
-      643,  634,  649,  634,  639,  638,  637,    0,    0,  719,
-      642,    0,  650,  647,  631,  640,  635,  623,  636,  632,
-      635,  632,  650,  656,   88,  620,  613,  618,  620,  611,
+        0,    0,   48,   49,  421,  422,   51,   54,  400,  413,
+      382,  409,  422,  422,  404,  401,  397,   50,   47,  422,
+      393,  392,  391,    0,  385,   23,   39,  369,  370,   30,
+      375,   36,  364,  373,   41,  364,  368,  422,  353,  422,
+        0,  422,  385,   70,  422,  394,  393,  359,  422,  422,
+      380,  422,    0,  379,   61,  374,  373,    0,  370,  352,
+      359,  347,  347,  343,  344,  346,  343,  340,   75,  339,
+      346,  337,  352,  337,  342,  341,  340,    0,    0,  422,
+      345,    0,  353,  350,  334,  343,  338,  326,  339,  335,
+      338,  335,  353,  359,   88,  323,  316,  321,  323,  314,
 
-      621,  610,  609,  609,  611,  602,  595,  597,  624,    0,
-      138,  188,   76,  238,  288,  338,  581,  574,  576,  560,
-      568,  590,  558,  496,  449,  409,    0,    0,  388,  438,
-       80,  387,  488,  538,  585,    0,    0,    0,  308,  252,
-      207,  156,  137,   52,    0,    0,    0,    0,    0,    0,
-        0,    0,  587,   50,   72,  719,  588,  589,  719,  600,
-      607,  614,  616,  623,  630,  635,  637,  642,  647
+      326,  318,  317,  317,  323,  314,  307,  315,  343,    0,
+      138,  339,    0,  338,  188,  297,  294,  302,  295,  297,
+      319,  288,  266,  262,  261,    0,    0,  238,   77,    0,
+        0,    0,  259,  252,  207,  156,  137,   52,    0,    0,
+      285,   50,   71,  422,  286,   80,  422,  295,  302,  309,
+      311,  318,  325,  330,  332,  337,  342
     } ;
 
-static yyconst short int yy_def[170] =
+static yyconst short int yy_def[158] =
     {   0,
-      159,    1,  160,  160,  159,  159,  159,  159,  159,  161,
-      159,  159,  159,  159,  159,  159,  159,  159,  159,  159,
-      162,  159,  159,  163,  163,  163,  163,  163,  163,  163,
-      163,  163,  163,  163,  163,  163,  163,  159,  163,  159,
-      164,  159,  159,  159,  159,  161,  161,  159,  159,  159,
-      159,  159,  165,  159,  159,  162,  162,  163,  163,  163,
-      163,  163,  163,  163,  163,  163,  163,  163,  163,  163,
-      163,  163,  163,  163,  163,  163,  163,  163,  164,  159,
-      159,  165,  162,  163,  163,  163,  163,  163,  163,  163,
-      163,  163,  159,  166,  159,  163,  163,  163,  163,  163,
+      147,    1,  148,  148,  147,  147,  147,  147,  147,  149,
+      147,  147,  147,  147,  147,  147,  147,  147,  147,  147,
+      150,  147,  147,  151,  151,  151,  151,  151,  151,  151,
+      151,  151,  151,  151,  151,  151,  151,  147,  151,  147,
+      152,  147,  147,  147,  147,  149,  149,  147,  147,  147,
+      147,  147,  153,  147,  147,  150,  150,  151,  151,  151,
+      151,  151,  151,  151,  151,  151,  151,  151,  151,  151,
+      151,  151,  151,  151,  151,  151,  151,  151,  152,  147,
+      147,  153,  150,  151,  151,  151,  151,  151,  151,  151,
+      151,  151,  147,  154,  147,  151,  151,  151,  151,  151,
 
-      163,  163,  159,  163,  163,  163,  163,  163,  166,  167,
-      159,  159,  112,  159,  159,  159,  163,  163,  163,  163,
-      163,  163,  163,  159,  163,  163,  167,  111,  159,  159,
-      112,  114,  159,  159,  111,  111,  116,  116,  163,  163,
-      163,  163,  168,  159,  129,  129,  130,  130,  133,  133,
-      134,  134,  169,  159,  159,  159,  169,  159,    0,  159,
-      159,  159,  159,  159,  159,  159,  159,  159,  159
+      151,  151,  147,  151,  151,  151,  151,  151,  154,  155,
+      147,  111,  111,   95,  147,  151,  151,  151,  151,  151,
+      151,  151,  147,  151,  151,  155,  111,  147,  111,  111,
+      115,  115,  151,  151,  151,  151,  156,  147,  128,  128,
+      157,  147,  147,  147,  157,  147,    0,  147,  147,  147,
+      147,  147,  147,  147,  147,  147,  147
     } ;
 
-static yyconst short int yy_nxt[770] =
+static yyconst short int yy_nxt[473] =
     {   0,
         6,    7,    8,    7,    9,   10,   11,   12,   13,   13,
        14,   15,   13,   16,   17,   18,   19,   20,   21,   22,
@@ -402,86 +399,54 @@ static yyconst short int yy_nxt[770] =
        33,   34,   35,   24,   24,   36,   37,   38,   39,   40,
        42,   42,   44,   44,   44,   44,   44,   44,   43,   43,
        52,   54,   60,   55,   61,   53,   62,   66,   69,   67,
-       73,   44,   44,   44,   70,   54,   63,   55,   93,  131,
-      156,  158,  154,  131,   74,   94,  111,   75,  111,  111,
-      111,  112,  111,  111,  111,  111,  111,  111,  113,  111,
+       73,   44,   44,   44,   70,   54,   63,   55,   93,  144,
+      129,  146,  142,   93,   74,   94,  130,   75,  111,  111,
+       94,  112,  111,  111,  111,  111,  111,  111,  111,  111,
 
-      114,  111,  111,  111,  115,  111,  111,  111,  111,  116,
-      116,  116,  116,  111,  111,  116,  116,  116,  116,  116,
-      116,  116,  116,  116,  116,  116,  116,  116,  116,  116,
-      116,  116,  116,  116,  116,  111,  116,  111,  111,  111,
-      143,  128,  111,  111,  111,  111,  111,  111,  111,  111,
-      114,  111,  111,  111,  111,  111,  111,  111,  111,  129,
-      129,  129,  129,  111,  111,  129,  129,  129,  129,  129,
-      129,  129,  129,  129,  129,  129,  129,  129,  129,  129,
-      129,  129,  129,  129,  129,  111,  129,  111,  111,  111,
-       69,  112,  111,  111,  111,  111,  111,  111,  113,  111,
+      113,  111,  111,  111,  114,  111,  111,  111,  111,  115,
+      115,  115,  115,  111,  111,  115,  115,  115,  115,  115,
+      115,  115,  115,  115,  115,  115,  115,  115,  115,  115,
+      115,  115,  115,  115,  115,  111,  115,  111,  111,  111,
+      137,  127,  111,  111,  111,  111,  111,  111,  111,  111,
+      113,  111,  111,  111,  111,  111,  111,  111,  111,  128,
+      128,  128,  128,  111,  111,  128,  128,  128,  128,  128,
+      128,  128,  128,  128,  128,  128,  128,  128,  128,  128,
+      128,  128,  128,  128,  128,  111,  128,  111,  111,  111,
+       69,  129,  111,  111,  111,  111,  111,  130,  111,  111,
 
-      114,  111,  111,  111,  111,  111,  111,  111,  111,  130,
-      130,  130,  130,  111,  111,  130,  130,  130,  130,  130,
-      130,  130,  130,  130,  130,  130,  130,  130,  130,  130,
-      130,  130,  130,  130,  130,  111,  130,  111,  111,  111,
-       95,  132,  111,  111,  111,  111,  111,  111,  111,  111,
-      114,  111,  111,  111,  111,  111,  111,  111,  111,  133,
-      133,  133,  133,  111,  111,  133,  133,  133,  133,  133,
-      133,  133,  133,  133,  133,  133,  133,  133,  133,  133,
-      133,  133,  133,  133,  133,  111,  133,  111,  111,  111,
-       69,  128,  111,  111,  111,  111,  111,  111,  111,  111,
+      113,  111,  111,  111,  131,  111,  111,  111,  111,  132,
+      132,  132,  132,  111,  111,  132,  132,  132,  132,  132,
+      132,  132,  132,  132,  132,  132,  132,  132,  132,  132,
+      132,  132,  132,  132,  132,  111,  132,  111,  111,  111,
+       95,  129,  111,  111,  111,  111,  111,  130,  111,  111,
+      113,  111,  111,  111,  139,  111,  111,  111,  111,  140,
+      140,  140,  140,  111,  111,  140,  140,  140,  140,  140,
+      140,  140,  140,  140,  140,  140,  140,  140,  140,  140,
+      140,  140,  140,  140,  140,  111,  140,  111,  143,  143,
+       69,   69,   95,  144,  144,   41,   41,   41,   41,   41,
 
-      114,  111,  111,  111,  115,  111,  111,  111,  111,  134,
-      134,  134,  134,  111,  111,  134,  134,  134,  134,  134,
-      134,  134,  134,  134,  134,  134,  134,  134,  134,  134,
-      134,  134,  134,  134,  134,  111,  134,  111,  111,  111,
-       69,  135,  111,  111,  111,  111,  111,  136,  111,  111,
-      114,  111,  111,  111,  137,  111,  111,  111,  111,  138,
-      138,  138,  138,  111,  111,  138,  138,  138,  138,  138,
-      138,  138,  138,  138,  138,  138,  138,  138,  138,  138,
-      138,  138,  138,  138,  138,  111,  138,  111,  111,  111,
-      128,  135,  111,  111,  111,  111,  111,  136,  111,  111,
+       41,   41,   46,   69,   46,   46,   46,   46,   46,   56,
+      138,   56,   56,   56,   56,   56,   58,   58,   79,   69,
+       79,   79,  137,   79,   79,   82,  136,   82,   82,   82,
+       82,   82,  110,  135,   69,  134,  110,  126,  126,  141,
+      133,  127,  112,  141,  145,  145,  147,  145,  145,   69,
+       95,  125,  124,   69,  123,  122,  121,  120,  119,  118,
+      117,  116,  109,   94,  108,  107,   69,  106,  105,   69,
+      104,   95,   69,   83,  103,  102,  101,  100,   99,   98,
+       97,   96,   95,   92,   69,   91,   90,   89,   88,   87,
+       86,   85,   84,   83,   83,   51,   51,   81,   47,   47,
 
-      114,  111,  111,  111,  145,  111,  111,  111,  111,  146,
-      146,  146,  146,  111,  111,  146,  146,  146,  146,  146,
-      146,  146,  146,  146,  146,  146,  146,  146,  146,  146,
-      146,  146,  146,  146,  146,  111,  146,  111,  111,  111,
-       95,  135,  111,  111,  111,  111,  111,  136,  111,  111,
-      114,  111,  111,  111,  147,  111,  111,  111,  111,  148,
-      148,  148,  148,  111,  111,  148,  148,  148,  148,  148,
-      148,  148,  148,  148,  148,  148,  148,  148,  148,  148,
-      148,  148,  148,  148,  148,  111,  148,  111,  111,  111,
-       69,  135,  111,  111,  111,  111,  111,  136,  111,  111,
-
-      114,  111,  111,  111,  149,  111,  111,  111,  111,  150,
-      150,  150,  150,  111,  111,  150,  150,  150,  150,  150,
-      150,  150,  150,  150,  150,  150,  150,  150,  150,  150,
-      150,  150,  150,  150,  150,  111,  150,  111,  111,  111,
-      144,  135,  111,  111,  111,  111,  111,  136,  111,  111,
-      114,  111,  111,  111,  151,  111,  111,  111,  111,  152,
-      152,  152,  152,  111,  111,  152,  152,  152,  152,  152,
-      152,  152,  152,  152,  152,  152,  152,  152,  152,  152,
-      152,  152,  152,  152,  152,  111,  152,  111,  135,   69,
-      155,  155,   93,  143,  136,  156,  156,  142,  141,   94,
-
-       41,   41,   41,   41,   41,   41,   41,   46,   69,   46,
-       46,   46,   46,   46,   56,  140,   56,   56,   56,   56,
-       56,   58,   58,   79,  139,   79,   79,  159,   79,   79,
-       82,   69,   82,   82,   82,   82,   82,  110,   95,  126,
-      125,  110,  127,  127,  153,   69,  124,  123,  153,  157,
-      157,  122,  157,  157,  121,  120,  119,  118,  117,  109,
-       94,  108,  107,   69,  106,  105,   69,  104,   95,   69,
-       83,  103,  102,  101,  100,   99,   98,   97,   96,   95,
-       92,   69,   91,   90,   89,   88,   87,   86,   85,   84,
-       83,   83,   51,   51,   81,   47,   47,   80,   78,   77,
-
-       76,   72,   71,   68,   65,   64,   59,   45,   45,   57,
-       51,   50,   50,   49,   48,   47,   45,  159,    5,  159,
-      159,  159,  159,  159,  159,  159,  159,  159,  159,  159,
-      159,  159,  159,  159,  159,  159,  159,  159,  159,  159,
-      159,  159,  159,  159,  159,  159,  159,  159,  159,  159,
-      159,  159,  159,  159,  159,  159,  159,  159,  159,  159,
-      159,  159,  159,  159,  159,  159,  159,  159,  159
+       80,   78,   77,   76,   72,   71,   68,   65,   64,   59,
+       45,   45,   57,   51,   50,   50,   49,   48,   47,   45,
+      147,    5,  147,  147,  147,  147,  147,  147,  147,  147,
+      147,  147,  147,  147,  147,  147,  147,  147,  147,  147,
+      147,  147,  147,  147,  147,  147,  147,  147,  147,  147,
+      147,  147,  147,  147,  147,  147,  147,  147,  147,  147,
+      147,  147,  147,  147,  147,  147,  147,  147,  147,  147,
+      147,  147
     } ;
 
-static yyconst short int yy_chk[770] =
+static yyconst short int yy_chk[473] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -490,83 +455,51 @@ static yyconst short int yy_chk[770] =
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         3,    4,    7,    7,    7,    8,    8,    8,    3,    4,
        18,   19,   26,   19,   26,   18,   27,   30,   32,   30,
-       35,   44,   44,   44,   32,   55,   27,   55,   69,  113,
-      155,  154,  144,  131,   35,   69,  113,   35,   95,   95,
-      131,   95,   95,   95,   95,   95,   95,   95,   95,   95,
+       35,   44,   44,   44,   32,   55,   27,   55,   69,  143,
+      129,  142,  138,  146,   35,   69,  129,   35,   95,   95,
+      146,   95,   95,   95,   95,   95,   95,   95,   95,   95,
 
        95,   95,   95,   95,   95,   95,   95,   95,   95,   95,
        95,   95,   95,   95,   95,   95,   95,   95,   95,   95,
        95,   95,   95,   95,   95,   95,   95,   95,   95,   95,
        95,   95,   95,   95,   95,   95,   95,   95,  111,  111,
-      143,  111,  111,  111,  111,  111,  111,  111,  111,  111,
+      137,  111,  111,  111,  111,  111,  111,  111,  111,  111,
       111,  111,  111,  111,  111,  111,  111,  111,  111,  111,
       111,  111,  111,  111,  111,  111,  111,  111,  111,  111,
       111,  111,  111,  111,  111,  111,  111,  111,  111,  111,
-      111,  111,  111,  111,  111,  111,  111,  111,  112,  112,
-      142,  112,  112,  112,  112,  112,  112,  112,  112,  112,
-
-      112,  112,  112,  112,  112,  112,  112,  112,  112,  112,
-      112,  112,  112,  112,  112,  112,  112,  112,  112,  112,
-      112,  112,  112,  112,  112,  112,  112,  112,  112,  112,
-      112,  112,  112,  112,  112,  112,  112,  112,  114,  114,
-      141,  114,  114,  114,  114,  114,  114,  114,  114,  114,
-      114,  114,  114,  114,  114,  114,  114,  114,  114,  114,
-      114,  114,  114,  114,  114,  114,  114,  114,  114,  114,
-      114,  114,  114,  114,  114,  114,  114,  114,  114,  114,
-      114,  114,  114,  114,  114,  114,  114,  114,  115,  115,
-      140,  115,  115,  115,  115,  115,  115,  115,  115,  115,
+      111,  111,  111,  111,  111,  111,  111,  111,  115,  115,
+      136,  115,  115,  115,  115,  115,  115,  115,  115,  115,
 
       115,  115,  115,  115,  115,  115,  115,  115,  115,  115,
       115,  115,  115,  115,  115,  115,  115,  115,  115,  115,
       115,  115,  115,  115,  115,  115,  115,  115,  115,  115,
-      115,  115,  115,  115,  115,  115,  115,  115,  116,  116,
-      139,  116,  116,  116,  116,  116,  116,  116,  116,  116,
-      116,  116,  116,  116,  116,  116,  116,  116,  116,  116,
-      116,  116,  116,  116,  116,  116,  116,  116,  116,  116,
-      116,  116,  116,  116,  116,  116,  116,  116,  116,  116,
-      116,  116,  116,  116,  116,  116,  116,  116,  129,  129,
-      132,  129,  129,  129,  129,  129,  129,  129,  129,  129,
+      115,  115,  115,  115,  115,  115,  115,  115,  128,  128,
+      135,  128,  128,  128,  128,  128,  128,  128,  128,  128,
+      128,  128,  128,  128,  128,  128,  128,  128,  128,  128,
+      128,  128,  128,  128,  128,  128,  128,  128,  128,  128,
+      128,  128,  128,  128,  128,  128,  128,  128,  128,  128,
+      128,  128,  128,  128,  128,  128,  128,  128,  141,  145,
+      134,  133,  125,  141,  145,  148,  148,  148,  148,  148,
 
-      129,  129,  129,  129,  129,  129,  129,  129,  129,  129,
-      129,  129,  129,  129,  129,  129,  129,  129,  129,  129,
-      129,  129,  129,  129,  129,  129,  129,  129,  129,  129,
-      129,  129,  129,  129,  129,  129,  129,  129,  130,  130,
-      126,  130,  130,  130,  130,  130,  130,  130,  130,  130,
-      130,  130,  130,  130,  130,  130,  130,  130,  130,  130,
-      130,  130,  130,  130,  130,  130,  130,  130,  130,  130,
-      130,  130,  130,  130,  130,  130,  130,  130,  130,  130,
-      130,  130,  130,  130,  130,  130,  130,  130,  133,  133,
-      125,  133,  133,  133,  133,  133,  133,  133,  133,  133,
+      148,  148,  149,  124,  149,  149,  149,  149,  149,  150,
+      123,  150,  150,  150,  150,  150,  151,  151,  152,  122,
+      152,  152,  121,  152,  152,  153,  120,  153,  153,  153,
+      153,  153,  154,  119,  118,  117,  154,  155,  155,  156,
+      116,  114,  112,  156,  157,  157,  109,  157,  157,  108,
+      107,  106,  105,  104,  103,  102,  101,  100,   99,   98,
+       97,   96,   94,   93,   92,   91,   90,   89,   88,   87,
+       86,   85,   84,   83,   81,   77,   76,   75,   74,   73,
+       72,   71,   70,   68,   67,   66,   65,   64,   63,   62,
+       61,   60,   59,   57,   56,   54,   51,   48,   47,   46,
 
-      133,  133,  133,  133,  133,  133,  133,  133,  133,  133,
-      133,  133,  133,  133,  133,  133,  133,  133,  133,  133,
-      133,  133,  133,  133,  133,  133,  133,  133,  133,  133,
-      133,  133,  133,  133,  133,  133,  133,  133,  134,  134,
-      124,  134,  134,  134,  134,  134,  134,  134,  134,  134,
-      134,  134,  134,  134,  134,  134,  134,  134,  134,  134,
-      134,  134,  134,  134,  134,  134,  134,  134,  134,  134,
-      134,  134,  134,  134,  134,  134,  134,  134,  134,  134,
-      134,  134,  134,  134,  134,  134,  134,  134,  135,  123,
-      153,  157,  158,  122,  135,  153,  157,  121,  120,  158,
-
-      160,  160,  160,  160,  160,  160,  160,  161,  119,  161,
-      161,  161,  161,  161,  162,  118,  162,  162,  162,  162,
-      162,  163,  163,  164,  117,  164,  164,  109,  164,  164,
-      165,  108,  165,  165,  165,  165,  165,  166,  107,  106,
-      105,  166,  167,  167,  168,  104,  103,  102,  168,  169,
-      169,  101,  169,  169,  100,   99,   98,   97,   96,   94,
-       93,   92,   91,   90,   89,   88,   87,   86,   85,   84,
-       83,   81,   77,   76,   75,   74,   73,   72,   71,   70,
-       68,   67,   66,   65,   64,   63,   62,   61,   60,   59,
-       57,   56,   54,   51,   48,   47,   46,   43,   39,   37,
-
-       36,   34,   33,   31,   29,   28,   25,   23,   22,   21,
-       17,   16,   15,   12,   11,   10,    9,    5,  159,  159,
-      159,  159,  159,  159,  159,  159,  159,  159,  159,  159,
-      159,  159,  159,  159,  159,  159,  159,  159,  159,  159,
-      159,  159,  159,  159,  159,  159,  159,  159,  159,  159,
-      159,  159,  159,  159,  159,  159,  159,  159,  159,  159,
-      159,  159,  159,  159,  159,  159,  159,  159,  159
+       43,   39,   37,   36,   34,   33,   31,   29,   28,   25,
+       23,   22,   21,   17,   16,   15,   12,   11,   10,    9,
+        5,  147,  147,  147,  147,  147,  147,  147,  147,  147,
+      147,  147,  147,  147,  147,  147,  147,  147,  147,  147,
+      147,  147,  147,  147,  147,  147,  147,  147,  147,  147,
+      147,  147,  147,  147,  147,  147,  147,  147,  147,  147,
+      147,  147,  147,  147,  147,  147,  147,  147,  147,  147,
+      147,  147
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -603,7 +536,7 @@ int id[10][10];
 
 #define C_COMMENT 1
 
-#line 607 "lex.yy.c"
+#line 540 "lex.yy.c"
 
 /* Macros after this point can all be overridden by user definitions in
  * section 1.
@@ -757,7 +690,7 @@ YY_DECL
 #line 40 "AnalisadorLexico.lex"
 
 
-#line 761 "lex.yy.c"
+#line 694 "lex.yy.c"
 
 	if ( yy_init )
 		{
@@ -808,13 +741,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 160 )
+				if ( yy_current_state >= 148 )
 					yy_c = yy_meta[(unsigned int) yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 719 );
+		while ( yy_base[yy_current_state] != 422 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -935,21 +868,21 @@ YY_RULE_SETUP
 													 * Splits the input using ' ' and populates the id and the name 
 													 * matrixes with the obtained values.
 													*/
-													char delim[] = " "; 							// Sets a delimiter.
-													char* str =  malloc(strlen(yytext)+1); 			// Allocates memory space.
-													strcpy(str, yytext); 							// Copies the string.
-													int lenYytext = strlen(yytext); 				// Gets the yytext length.
-													char* ptr = strtok(str, delim); 				// Applies the split.
-													char* printPtr =  malloc(strlen(ptr)+1); 		// Allocates memory space.
-													strcpy(printPtr, ptr); 							// Copies the string.
-													int lenPtr = strlen(ptr); 						// Gets the ptr length.
-													strncpy(str, yytext + (lenPtr + 1), lenYytext); // Applies a trim function to ignore blank spaces.
-													str[strlen(str) - 1] = '\0'; 					// Removes the parameters' starting parentheses.
-													printf("[reserved_word, %s]", printPtr);
-													currentId++; 									// Increases the currentId.
-													id[scope][k] = currentId; 						// Populates the id matrix.
-													name[scope][k] = str; 							// Populates the name matrix.
-													printf("[id, %d]", id[scope][k]);
+													char delim[] = " "; 												// Sets a delimiter.
+													char* str =  malloc(strlen(yytext)+1); 								// Allocates memory space.
+													strcpy(str, yytext); 												// Copies the string.
+													int lenYytext = strlen(yytext); 									// Gets the yytext length.
+													char* ptr = strtok(str, delim); 									// Applies the split.
+													char* printPtr =  malloc(strlen(ptr)+1); 							// Allocates memory space.
+													strcpy(printPtr, ptr); 												// Copies the string.
+													int lenPtr = strlen(ptr); 											// Gets the ptr length.
+													strncpy(str, yytext + (lenPtr + 1), lenYytext); 					// Applies a trim function to ignore blank spaces.
+													str[strlen(str) - 1] = '\0'; 										// Removes the parameters' starting parentheses.
+													printf("[reserved_word, %s]", printPtr);							// Prints the reserved_word.
+													currentId++; 														// Increases the currentId.
+													id[scope][k] = currentId; 											// Populates the id matrix.
+													name[scope][k] = str; 												// Populates the name matrix.
+													printf("[id, %d]", id[scope][k]);									// Prints the id.
 													break;
 												}
 											}
@@ -972,17 +905,17 @@ YY_RULE_SETUP
 													 * Splits the input using ' ' and populates the id and the name 
 													 * matrixes with the obtained values.
 													*/
-													char delim[] = " ";								// Sets a delimiter.
-													char* str =  malloc(strlen(yytext)+1);			// Allocates memory space.
-													char* str2 =  malloc(strlen(yytext)+1);			// Allocates memory space.
-													strcpy(str, yytext);							// Copies the string.
-													int lenYytext = strlen(yytext);					// Gets the yytext length.
-													char* ptr = strtok(str, delim);					// Applies the split.
-													char* printPtr =  malloc(strlen(ptr)+1);		// Allocates memory space.
-													strcpy(printPtr, ptr);							// Copies the string.
-													int lenPtr = strlen(ptr);						// Gets the ptr length.
-													strncpy(str, yytext + (lenPtr + 1), lenYytext);	// Copies the string.
-													printf("[reserved_word, %s]", printPtr);
+													char delim[] = " ";													// Sets a delimiter.
+													char* str =  malloc(strlen(yytext)+1);								// Allocates memory space.
+													char* str2 =  malloc(strlen(yytext)+1);								// Allocates memory space.
+													strcpy(str, yytext);												// Copies the string.
+													int lenYytext = strlen(yytext);										// Gets the yytext length.
+													char* ptr = strtok(str, delim);										// Applies the split.
+													char* printPtr =  malloc(strlen(ptr)+1);							// Allocates memory space.
+													strcpy(printPtr, ptr);												// Copies the string.
+													int lenPtr = strlen(ptr);											// Gets the ptr length.
+													strncpy(str, yytext + (lenPtr + 1), lenYytext);						// Copies the string.
+													printf("[reserved_word, %s]", printPtr);							// Prints the reserved_word.
 													
 													/*
 													 * If the expression contains comma, the split is applied and for 
@@ -990,7 +923,7 @@ YY_RULE_SETUP
 													*/ 
 													if (strchr(str, ',') != NULL) {
 														k--;															// Decreases the iterator.
-														char* strComma;
+														char* strComma;													// Instantiates the strComma.
 														
 														// While comma exists.
 														while(strchr(str, ',') != NULL) {
@@ -1007,30 +940,29 @@ YY_RULE_SETUP
 																// If the character is different than ' ' and '*' populates the matrixes.
 																if (printPtr[i] != ' ' && printPtr[i] != '*') {
 																	strncpy(printPtr, printPtr + i, strlen(printPtr));	// Copies the string.
-																	currentId++; // Increases the current id.
-																	k++;
-																	id[scope][k] = currentId;
-																	name[scope][k] = printPtr;
-																	printf("[id, %d]", id[scope][k]);
+																	currentId++; 										// Increases the currentId.
+																	k++;												// Increases the iterator.
+																	id[scope][k] = currentId;							// Populates the id matrix.
+																	name[scope][k] = printPtr;							// Populates the name matrix.	
+																	printf("[id, %d]", id[scope][k]);					// Prints the id.
 																	break;
 																}
 															}
 															
-															lenPtr = strlen(ptr);								// Gets the ptr length.
-															strncpy(strComma, str + (lenPtr + 1), lenYytext);	// Copies the string.
-															str =  malloc(strlen(strComma)+1);					// Allocates memory space.
-															strncpy(str, strComma, strlen(strComma));			// Copies the string.
-															
-															char delim[] = " ";									// Sets a delimiter.
-															str2 =  malloc(strlen(str)+1);						// Allocates memory space.
-															strcpy(str2, str);									// Copies the string.
-															int lenYytext = strlen(str);						// Gets the str length.
-															char* ptr = strtok(str2, delim);					// Applies the split.
-															char* printPtr =  malloc(strlen(ptr)+1);			// Allocates memory space.
-															strcpy(printPtr, ptr);								// Copies the string.
-															int lenPtr = strlen(ptr);							// Gets the ptr length.
-															strncpy(str2, str + (lenPtr + 1), lenYytext);		// Copies the string.
-															printf("[reserved_word, %s]", printPtr);
+															lenPtr = strlen(ptr);										// Gets the ptr length.
+															strncpy(strComma, str + (lenPtr + 1), lenYytext);			// Copies the string.
+															str =  malloc(strlen(strComma)+1);							// Allocates memory space.
+															strncpy(str, strComma, strlen(strComma));					// Copies the string.
+															char delim[] = " ";											// Sets a delimiter.
+															str2 =  malloc(strlen(str)+1);								// Allocates memory space.
+															strcpy(str2, str);											// Copies the string.
+															int lenYytext = strlen(str);								// Gets the str length.
+															char* ptr = strtok(str2, delim);							// Applies the split.
+															char* printPtr =  malloc(strlen(ptr)+1);					// Allocates memory space.
+															strcpy(printPtr, ptr);										// Copies the string.
+															int lenPtr = strlen(ptr);									// Gets the ptr length.
+															strncpy(str2, str + (lenPtr + 1), lenYytext);				// Copies the string.
+															printf("[reserved_word, %s]", printPtr);					// Prints the reserved_word.
 														}
 														// Verifies if the variable containts ' ' or '*' and works like a trim function.
 														if (str2[0] == ' ' || str2[0] == '*') { 
@@ -1039,22 +971,22 @@ YY_RULE_SETUP
 															for (int i = 0; i < strlen(str2); i++) { 
 																// If the character is different than ' ' and '*' populates the matrixes.
 																if (str2[i] != ' ' && str2[i] != '*') {
-																	strncpy(str2, str2 + i, strlen(str2));		// Copies the string.
-																	currentId++;
-																	k++;
-																	id[scope][k] = currentId;
-																	name[scope][k] = str2;
-																	printf("[id, %d]", id[scope][k]);
+																	strncpy(str2, str2 + i, strlen(str2));				// Copies the string.
+																	currentId++;										// Increases the currentId.
+																	k++;												// Increases the iterator.
+																	id[scope][k] = currentId;							// Populates the id matrix.
+																	name[scope][k] = str2;								// Populates the name matrix.
+																	printf("[id, %d]", id[scope][k]);					// Prints the id.
 																	break;
 																}
 															}
 														// else if character is different than ' ' and '*' populates the matrixes and updates the iterators.
 														} else {
-															currentId++;
-															k++;
-															id[scope][k] = currentId;
-															name[scope][k] = strComma;
-															printf("[id, %d]", id[scope][k]);
+															currentId++;												// Increases the currentId.
+															k++;														// Increases the iterator.
+															id[scope][k] = currentId;									// Populates the id matrix.
+															name[scope][k] = strComma;									// Populates the name matrix.
+															printf("[id, %d]", id[scope][k]);							// Prints the id.
 														}
 													// else if the expression does not contain comma. Only contains one variable (id).
 													} else {
@@ -1062,11 +994,11 @@ YY_RULE_SETUP
 														for (int i = 0; i < strlen(str); i++) {
 															// If the character is different than ' ' and '*' populates the matrixes.
 															if (str[i] != ' ' && str[i] != '*') {
-																strncpy(str, str + i, strlen(str));			// Copies the string.
-																currentId++;
-																id[scope][k] = currentId;
-																name[scope][k] = str;
-																printf("[id, %d]", id[scope][k]);
+																strncpy(str, str + i, strlen(str));						// Copies the string.
+																currentId++;											// Increases the currentId.
+																id[scope][k] = currentId;								// Populates the id matrix.
+																name[scope][k] = str;									// Populates the name matrix.
+																printf("[id, %d]", id[scope][k]);						// Prints the id.	
 																break;
 															}
 														}
@@ -1078,7 +1010,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 226 "AnalisadorLexico.lex"
+#line 225 "AnalisadorLexico.lex"
 {	// Verifies the variables creation outside functions. Example: float NotaDaP1, NotaDaP2;.
 
 											// For that iterates over the name matrix verifying the variables.
@@ -1090,23 +1022,23 @@ YY_RULE_SETUP
 													 * Splits the input using ' ' and populates the id and the name 
 													 * matrixes with the obtained values.
 													*/
-													char delim[] = " ";								// Sets a delimiter.
-													char* str =  malloc(strlen(yytext)+1);			// Allocates memory space.
-													strcpy(str, yytext);							// Copies the string.
-													int lenYytext = strlen(yytext);					// Gets the yytext length.
-													char* ptr = strtok(str, delim);					// Applies the split.
-													char* printPtr =  malloc(strlen(ptr)+1);		// Allocates memory space.
-													strcpy(printPtr, ptr);							// Copies the string.
-													int lenPtr = strlen(ptr);						// Gets the ptr length.
-													strncpy(str, yytext + (lenPtr + 1), lenYytext);	// Copies the string.
-													printf("[reserved_word, %s]", printPtr);
+													char delim[] = " ";													// Sets a delimiter.
+													char* str =  malloc(strlen(yytext)+1);								// Allocates memory space.
+													strcpy(str, yytext);												// Copies the string.
+													int lenYytext = strlen(yytext);										// Gets the yytext length.
+													char* ptr = strtok(str, delim);										// Applies the split.
+													char* printPtr =  malloc(strlen(ptr)+1);							// Allocates memory space.
+													strcpy(printPtr, ptr);												// Copies the string.
+													int lenPtr = strlen(ptr);											// Gets the ptr length.
+													strncpy(str, yytext + (lenPtr + 1), lenYytext);						// Copies the string.
+													printf("[reserved_word, %s]", printPtr);							// Prints the reserved_word.
 													
 													/*
 													 * If the expression contains comma, the split is applied and for 
 													 * each value inside the spplited values a new id will be allocated.
 													*/ 
 													if (strchr(str, ',') != NULL) {
-														k--;
+														k--;															// Decreases the iterator.
 														char* strComma;
 														// While comma exists.
 														while(strchr(str, ',') != NULL) {
@@ -1121,11 +1053,11 @@ YY_RULE_SETUP
 																// If the character is different than ' ' populates the matrixes.
 																if (printPtr[i] != ' ') {
 																	strncpy(printPtr, printPtr + i, strlen(printPtr));	// Copies the string.
-																	currentId++;
-																	k++;
-																	id[scope][k] = currentId;
-																	name[scope][k] = printPtr;
-																	printf("[id, %d]", id[scope][k]);
+																	currentId++;										// Increases the currentId.
+																	k++;												// Increases the iterator.	
+																	id[scope][k] = currentId;							// Populates the id matrix.
+																	name[scope][k] = printPtr;							// Populates the name matrix.
+																	printf("[id, %d]", id[scope][k]);					// Prints the id.
 																	break;
 																}
 															}
@@ -1141,22 +1073,22 @@ YY_RULE_SETUP
 																// If the character is different than ' '.
 																if (str[i] != ' ') {
 																	strncpy(str, str + i, strlen(str));					// Copies the string.
-																	currentId++;
-																	k++;
-																	id[scope][k] = currentId;
-																	name[scope][k] = str;
-																	printf("[id, %d]", id[scope][k]);
+																	currentId++;										// Increases the currentId.
+																	k++;												// Increases the iterator.
+																	id[scope][k] = currentId;							// Populates the id matrix.
+																	name[scope][k] = str;								// Populates the name matrix.
+																	printf("[id, %d]", id[scope][k]);					// Prints the id.
 																	break;
 																}
 															}
 														// else if character is different than ' ' populates the matrixes and updates the iterators.
 														} else {
-																currentId++;
-																k++;
-																id[scope][k] = currentId;
-																name[scope][k] = strComma;
-																printf("[id, %d]", id[scope][k]);
-															}
+															currentId++;												// Increases the currentId.
+															k++;														// Increases the iterator.	
+															id[scope][k] = currentId;									// Populates the id matrix.
+															name[scope][k] = strComma;									// Populates the name matrix.
+															printf("[id, %d]", id[scope][k]);							// Prints the id.
+														}
 													// else if the expression does not contain comma. Only contains one variable (id).
 													} else {
 														// Navigates through the variables and works like a trim function.
@@ -1164,10 +1096,10 @@ YY_RULE_SETUP
 															// If the character is different than ' ' and '*' populates the matrixes.
 															if (str[i] != ' ' && str[i] != '*') {
 																strncpy(str, str + i, strlen(str));						// Copies the string.
-																currentId++;
-																id[scope][k] = currentId;
-																name[scope][k] = str;
-																printf("[id, %d]", id[scope][k]);
+																currentId++;											// Increases the currentId.
+																id[scope][k] = currentId;								// Populates the id matrix.
+																name[scope][k] = str;									// Populates the name matrix.
+																printf("[id, %d]", id[scope][k]);						// Prints the id.
 																break;
 															}
 														}
@@ -1179,157 +1111,95 @@ YY_RULE_SETUP
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 324 "AnalisadorLexico.lex"
-{	for (int k = 0; k < sizeof name[scope] / sizeof name[scope][0]; k++){
-												if (strcmp(name[scope][k], "") == 0) {
-													
-													// Handle space.
-													char delim[] = " ";													// Sets a delimiter.
-													char* str =  malloc(strlen(yytext)+1);								// Allocates memory space.
-													strcpy(str, yytext);												// Copies the string.
-													int lenYytext = strlen(yytext);										// Gets the yytext length.
-													char* ptr = strtok(str, delim);
-													char* printPtr =  malloc(strlen(ptr)+1);							// Allocates memory space.
-													strcpy(printPtr, ptr);												// Copies the string.
-													int lenPtr = strlen(ptr);											// Gets the ptr length.
-													strncpy(str, yytext + (lenPtr + 1), lenYytext);						// Copies the string.
-													printf("[reserved_word, %s]", printPtr);
-													
-													// Handle comma.
-													if (strchr(str, ',') != NULL) {
-														k--;
-														char* strComma;
-														while(strchr(str, ',') != NULL) {
-															char delimComma[] = ",";									// Sets a delimiter.
-															strComma =  malloc(strlen(str)+1);							// Allocates memory space.
-															strcpy(strComma, str);										// Copies the string.
-															lenYytext = strlen(str);									// Gets the str length.
-															ptr = strtok(strComma, delimComma);
-															printPtr =  malloc(strlen(ptr)+1);							// Allocates memory space.
-															strcpy(printPtr, ptr);
-															for (int i = 0; i < strlen(printPtr); i++) { 
-																if (printPtr[i] != ' ') {
-																	strncpy(printPtr, printPtr + i, strlen(printPtr));	// Copies the string.
-																	currentId++;
-																	k++;
-																	id[scope][k] = currentId;
-																	name[scope][k] = printPtr;
-																	printf("[id, %d]", id[scope][k]);
-																	break;
-																}
-															}
-															lenPtr = strlen(ptr);										// Gets the ptr length.
-															strncpy(strComma, str + (lenPtr + 1), lenYytext);			// Copies the string.
-															str =  malloc(strlen(strComma)+1);							// Allocates memory space.
-															strncpy(str, strComma, strlen(strComma));					// Copies the string.
-														}
-														if (str[0] == ' ') {
-															for (int i = 0; i < strlen(str); i++) { 
-																if (str[i] != ' ') {
-																	strncpy(str, str + i, strlen(str));					// Copies the string.
-																	currentId++;
-																	k++;
-																	id[scope][k] = currentId;
-																	name[scope][k] = str;
-																	printf("[id, %d]", id[scope][k]);
-																	break;
-																}
-																}
-														} else {
-																currentId++;
-																k++;
-																id[scope][k] = currentId;
-																name[scope][k] = strComma;
-																printf("[id, %d]", id[scope][k]);
-															}
-													} else {
-														for (int i = 0; i < strlen(str); i++) { 
-															if (str[i] != ' ' && str[i] != '*') {
-																strncpy(str, str + i, strlen(str));						// Copies the string.
-																currentId++;
-																id[scope][k] = currentId;
-																name[scope][k] = str;
-																printf("[id, %d]", id[scope][k]);
-																break;
-															}
-														}
-													}
+#line 323 "AnalisadorLexico.lex"
+{ 	// Verify the scope id and gets the variable id.
+											
+											// Variable that verify if the id exists.
+											int existId = 0; // 0 --> Does not exist && 1 --> Exists.
+											
+											// Verify if the variable id already exist. Changes the scopes in each iteration.
+											for (int i = scope; i >= 0; i--) {
+												// If exists breaks out of the loop.
+												if (existId == 1) {
 													break;
 												}
+												// Navegates inside each scope verifying if the variable exists.
+												for (int j = 0; j < sizeof name[i] / sizeof name[i][0]; j++){
+													
+													/* 
+													 * Debug print:
+													 * printf("\n yytext '%s' == name[i][j] '%s' \n", yytext, name[i][j]);
+													*/
+
+													char* str = malloc(strlen(yytext)+1);								// Allocates memory space.
+                                                    strcpy(str, yytext);												// Copies the string.
+													
+													// Verifies if the position value is the same as the str variable.
+													if (strcmp(str, name[i][j]) == 0) {	
+														printf("[id, %d]", id[i][j]);									// Prints the id.	
+														existId = 1;													// Sets the id to 1.
+														break;
+													}
+												}
+											}
+											// Verifies if the variable id was not found.
+											if (existId == 0){
+												printf("[Variavel %s nao encontrada]", yytext);
 											}
 										}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 403 "AnalisadorLexico.lex"
-{ int existId = 0; // 0 --> Nao existe && 1 --> Existe.
-											// Verificar se o elemento jah existe na matriz.
-											for (int i = scope; i >= 0; i--) {
-												if (existId == 1) {
-													break;
-												}
-												for (int j = 0; j < sizeof name[i] / sizeof name[i][0]; j++){
-													//printf("\n yytext '%s' == name[i][j] '%s' \n", yytext, name[i][j]);
-													char* str = malloc(strlen(yytext)+1);	// Allocates memory space.
-                                                    strcpy(str, yytext);					// Copies the string.
-													if (strcmp(str, name[i][j]) == 0) {
-														printf("[id, %d]", id[i][j]);
-														existId = 1;
-														break;
-													}
-												}
-											}
-											if (existId == 0){ // Elemento nao encontrado.
-												printf("[Variavel %s nao encontrada]", yytext);
-											}
-										}
+#line 359 "AnalisadorLexico.lex"
+{	// "Arithmetics Operators" regex.
+											printf("[Arith_Op, %s]", yytext);}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 425 "AnalisadorLexico.lex"
-{printf("[Arith_Op, %s]", yytext);}
+#line 362 "AnalisadorLexico.lex"
+{	// "Relational Operators" regex.
+											printf("[Relational_Op, %s]", yytext);}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 427 "AnalisadorLexico.lex"
-{printf("[Relational_Op, %s]", yytext);}
+#line 365 "AnalisadorLexico.lex"
+{	// "Equal Operator" regex.
+											printf("[Equal_OP, %s]", yytext);}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 429 "AnalisadorLexico.lex"
-{printf("[Equal_OP, %s]", yytext);}
+#line 368 "AnalisadorLexico.lex"
+{	// "String" regex.
+											printf("[string_literal, %s]", yytext);}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 431 "AnalisadorLexico.lex"
-{printf("[string_literal, %s]", yytext);}
+#line 371 "AnalisadorLexico.lex"
+{	// "Semicolon" regex.
+											printf("\n");}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 433 "AnalisadorLexico.lex"
-{printf("\n");}
+#line 374 "AnalisadorLexico.lex"
+{ 	/* Handles the remotion of tab and new line. */ }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 435 "AnalisadorLexico.lex"
-
+#line 376 "AnalisadorLexico.lex"
+{ 	/* Handles the remotion of other symbols. */ }						
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 437 "AnalisadorLexico.lex"
-
+#line 378 "AnalisadorLexico.lex"
+{	// Regex that prints the remaining characters.
+											printf("Caractere nao reconhecido: %s\n", yytext);}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 439 "AnalisadorLexico.lex"
-{printf("Caractere nao reconhecido: %s\n", yytext);}
-	YY_BREAK
-case 28:
-YY_RULE_SETUP
-#line 441 "AnalisadorLexico.lex"
+#line 381 "AnalisadorLexico.lex"
 ECHO;
 	YY_BREAK
-#line 1333 "lex.yy.c"
+#line 1203 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(C_COMMENT):
 	yyterminate();
@@ -1622,7 +1492,7 @@ static yy_state_type yy_get_previous_state()
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 160 )
+			if ( yy_current_state >= 148 )
 				yy_c = yy_meta[(unsigned int) yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
@@ -1657,11 +1527,11 @@ yy_state_type yy_current_state;
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 160 )
+		if ( yy_current_state >= 148 )
 			yy_c = yy_meta[(unsigned int) yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
-	yy_is_jam = (yy_current_state == 159);
+	yy_is_jam = (yy_current_state == 147);
 
 	return yy_is_jam ? 0 : yy_current_state;
 	}
@@ -2216,7 +2086,7 @@ int main()
 	return 0;
 	}
 #endif
-#line 441 "AnalisadorLexico.lex"
+#line 381 "AnalisadorLexico.lex"
 
 
 int main(int argc, char *argv[]){

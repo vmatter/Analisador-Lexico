@@ -85,21 +85,21 @@ HAS_SEMICOLON	^\;
 													 * Splits the input using ' ' and populates the id and the name 
 													 * matrixes with the obtained values.
 													*/
-													char delim[] = " "; 							// Sets a delimiter.
-													char* str =  malloc(strlen(yytext)+1); 			// Allocates memory space.
-													strcpy(str, yytext); 							// Copies the string.
-													int lenYytext = strlen(yytext); 				// Gets the yytext length.
-													char* ptr = strtok(str, delim); 				// Applies the split.
-													char* printPtr =  malloc(strlen(ptr)+1); 		// Allocates memory space.
-													strcpy(printPtr, ptr); 							// Copies the string.
-													int lenPtr = strlen(ptr); 						// Gets the ptr length.
-													strncpy(str, yytext + (lenPtr + 1), lenYytext); // Applies a trim function to ignore blank spaces.
-													str[strlen(str) - 1] = '\0'; 					// Removes the parameters' starting parentheses.
-													printf("[reserved_word, %s]", printPtr);
-													currentId++; 									// Increases the currentId.
-													id[scope][k] = currentId; 						// Populates the id matrix.
-													name[scope][k] = str; 							// Populates the name matrix.
-													printf("[id, %d]", id[scope][k]);
+													char delim[] = " "; 												// Sets a delimiter.
+													char* str =  malloc(strlen(yytext)+1); 								// Allocates memory space.
+													strcpy(str, yytext); 												// Copies the string.
+													int lenYytext = strlen(yytext); 									// Gets the yytext length.
+													char* ptr = strtok(str, delim); 									// Applies the split.
+													char* printPtr =  malloc(strlen(ptr)+1); 							// Allocates memory space.
+													strcpy(printPtr, ptr); 												// Copies the string.
+													int lenPtr = strlen(ptr); 											// Gets the ptr length.
+													strncpy(str, yytext + (lenPtr + 1), lenYytext); 					// Applies a trim function to ignore blank spaces.
+													str[strlen(str) - 1] = '\0'; 										// Removes the parameters' starting parentheses.
+													printf("[reserved_word, %s]", printPtr);							// Prints the reserved_word.
+													currentId++; 														// Increases the currentId.
+													id[scope][k] = currentId; 											// Populates the id matrix.
+													name[scope][k] = str; 												// Populates the name matrix.
+													printf("[id, %d]", id[scope][k]);									// Prints the id.
 													break;
 												}
 											}
@@ -119,17 +119,17 @@ HAS_SEMICOLON	^\;
 													 * Splits the input using ' ' and populates the id and the name 
 													 * matrixes with the obtained values.
 													*/
-													char delim[] = " ";								// Sets a delimiter.
-													char* str =  malloc(strlen(yytext)+1);			// Allocates memory space.
-													char* str2 =  malloc(strlen(yytext)+1);			// Allocates memory space.
-													strcpy(str, yytext);							// Copies the string.
-													int lenYytext = strlen(yytext);					// Gets the yytext length.
-													char* ptr = strtok(str, delim);					// Applies the split.
-													char* printPtr =  malloc(strlen(ptr)+1);		// Allocates memory space.
-													strcpy(printPtr, ptr);							// Copies the string.
-													int lenPtr = strlen(ptr);						// Gets the ptr length.
-													strncpy(str, yytext + (lenPtr + 1), lenYytext);	// Copies the string.
-													printf("[reserved_word, %s]", printPtr);
+													char delim[] = " ";													// Sets a delimiter.
+													char* str =  malloc(strlen(yytext)+1);								// Allocates memory space.
+													char* str2 =  malloc(strlen(yytext)+1);								// Allocates memory space.
+													strcpy(str, yytext);												// Copies the string.
+													int lenYytext = strlen(yytext);										// Gets the yytext length.
+													char* ptr = strtok(str, delim);										// Applies the split.
+													char* printPtr =  malloc(strlen(ptr)+1);							// Allocates memory space.
+													strcpy(printPtr, ptr);												// Copies the string.
+													int lenPtr = strlen(ptr);											// Gets the ptr length.
+													strncpy(str, yytext + (lenPtr + 1), lenYytext);						// Copies the string.
+													printf("[reserved_word, %s]", printPtr);							// Prints the reserved_word.
 													
 													/*
 													 * If the expression contains comma, the split is applied and for 
@@ -137,7 +137,7 @@ HAS_SEMICOLON	^\;
 													*/ 
 													if (strchr(str, ',') != NULL) {
 														k--;															// Decreases the iterator.
-														char* strComma;
+														char* strComma;													// Instantiates the strComma.
 														
 														// While comma exists.
 														while(strchr(str, ',') != NULL) {
@@ -154,30 +154,29 @@ HAS_SEMICOLON	^\;
 																// If the character is different than ' ' and '*' populates the matrixes.
 																if (printPtr[i] != ' ' && printPtr[i] != '*') {
 																	strncpy(printPtr, printPtr + i, strlen(printPtr));	// Copies the string.
-																	currentId++; // Increases the current id.
-																	k++;
-																	id[scope][k] = currentId;
-																	name[scope][k] = printPtr;
-																	printf("[id, %d]", id[scope][k]);
+																	currentId++; 										// Increases the currentId.
+																	k++;												// Increases the iterator.
+																	id[scope][k] = currentId;							// Populates the id matrix.
+																	name[scope][k] = printPtr;							// Populates the name matrix.	
+																	printf("[id, %d]", id[scope][k]);					// Prints the id.
 																	break;
 																}
 															}
 															
-															lenPtr = strlen(ptr);								// Gets the ptr length.
-															strncpy(strComma, str + (lenPtr + 1), lenYytext);	// Copies the string.
-															str =  malloc(strlen(strComma)+1);					// Allocates memory space.
-															strncpy(str, strComma, strlen(strComma));			// Copies the string.
-															
-															char delim[] = " ";									// Sets a delimiter.
-															str2 =  malloc(strlen(str)+1);						// Allocates memory space.
-															strcpy(str2, str);									// Copies the string.
-															int lenYytext = strlen(str);						// Gets the str length.
-															char* ptr = strtok(str2, delim);					// Applies the split.
-															char* printPtr =  malloc(strlen(ptr)+1);			// Allocates memory space.
-															strcpy(printPtr, ptr);								// Copies the string.
-															int lenPtr = strlen(ptr);							// Gets the ptr length.
-															strncpy(str2, str + (lenPtr + 1), lenYytext);		// Copies the string.
-															printf("[reserved_word, %s]", printPtr);
+															lenPtr = strlen(ptr);										// Gets the ptr length.
+															strncpy(strComma, str + (lenPtr + 1), lenYytext);			// Copies the string.
+															str =  malloc(strlen(strComma)+1);							// Allocates memory space.
+															strncpy(str, strComma, strlen(strComma));					// Copies the string.
+															char delim[] = " ";											// Sets a delimiter.
+															str2 =  malloc(strlen(str)+1);								// Allocates memory space.
+															strcpy(str2, str);											// Copies the string.
+															int lenYytext = strlen(str);								// Gets the str length.
+															char* ptr = strtok(str2, delim);							// Applies the split.
+															char* printPtr =  malloc(strlen(ptr)+1);					// Allocates memory space.
+															strcpy(printPtr, ptr);										// Copies the string.
+															int lenPtr = strlen(ptr);									// Gets the ptr length.
+															strncpy(str2, str + (lenPtr + 1), lenYytext);				// Copies the string.
+															printf("[reserved_word, %s]", printPtr);					// Prints the reserved_word.
 														}
 														// Verifies if the variable containts ' ' or '*' and works like a trim function.
 														if (str2[0] == ' ' || str2[0] == '*') { 
@@ -186,22 +185,22 @@ HAS_SEMICOLON	^\;
 															for (int i = 0; i < strlen(str2); i++) { 
 																// If the character is different than ' ' and '*' populates the matrixes.
 																if (str2[i] != ' ' && str2[i] != '*') {
-																	strncpy(str2, str2 + i, strlen(str2));		// Copies the string.
-																	currentId++;
-																	k++;
-																	id[scope][k] = currentId;
-																	name[scope][k] = str2;
-																	printf("[id, %d]", id[scope][k]);
+																	strncpy(str2, str2 + i, strlen(str2));				// Copies the string.
+																	currentId++;										// Increases the currentId.
+																	k++;												// Increases the iterator.
+																	id[scope][k] = currentId;							// Populates the id matrix.
+																	name[scope][k] = str2;								// Populates the name matrix.
+																	printf("[id, %d]", id[scope][k]);					// Prints the id.
 																	break;
 																}
 															}
 														// else if character is different than ' ' and '*' populates the matrixes and updates the iterators.
 														} else {
-															currentId++;
-															k++;
-															id[scope][k] = currentId;
-															name[scope][k] = strComma;
-															printf("[id, %d]", id[scope][k]);
+															currentId++;												// Increases the currentId.
+															k++;														// Increases the iterator.
+															id[scope][k] = currentId;									// Populates the id matrix.
+															name[scope][k] = strComma;									// Populates the name matrix.
+															printf("[id, %d]", id[scope][k]);							// Prints the id.
 														}
 													// else if the expression does not contain comma. Only contains one variable (id).
 													} else {
@@ -209,11 +208,11 @@ HAS_SEMICOLON	^\;
 														for (int i = 0; i < strlen(str); i++) {
 															// If the character is different than ' ' and '*' populates the matrixes.
 															if (str[i] != ' ' && str[i] != '*') {
-																strncpy(str, str + i, strlen(str));			// Copies the string.
-																currentId++;
-																id[scope][k] = currentId;
-																name[scope][k] = str;
-																printf("[id, %d]", id[scope][k]);
+																strncpy(str, str + i, strlen(str));						// Copies the string.
+																currentId++;											// Increases the currentId.
+																id[scope][k] = currentId;								// Populates the id matrix.
+																name[scope][k] = str;									// Populates the name matrix.
+																printf("[id, %d]", id[scope][k]);						// Prints the id.	
 																break;
 															}
 														}
@@ -223,7 +222,7 @@ HAS_SEMICOLON	^\;
 											}
 										}
 
-{TYPE}\ *?.*\,\ ?{ID}					{	// Verifies the variables creation outside functions. Example: float NotaDaP1, NotaDaP2;.
+{TYPE}\ *?.*\,?\ ?{ID}					{	// Verifies the variables creation outside functions. Example: float NotaDaP1, NotaDaP2;.
 
 											// For that iterates over the name matrix verifying the variables.
 											for (int k = 0; k < sizeof name[scope] / sizeof name[scope][0]; k++){
@@ -234,23 +233,23 @@ HAS_SEMICOLON	^\;
 													 * Splits the input using ' ' and populates the id and the name 
 													 * matrixes with the obtained values.
 													*/
-													char delim[] = " ";								// Sets a delimiter.
-													char* str =  malloc(strlen(yytext)+1);			// Allocates memory space.
-													strcpy(str, yytext);							// Copies the string.
-													int lenYytext = strlen(yytext);					// Gets the yytext length.
-													char* ptr = strtok(str, delim);					// Applies the split.
-													char* printPtr =  malloc(strlen(ptr)+1);		// Allocates memory space.
-													strcpy(printPtr, ptr);							// Copies the string.
-													int lenPtr = strlen(ptr);						// Gets the ptr length.
-													strncpy(str, yytext + (lenPtr + 1), lenYytext);	// Copies the string.
-													printf("[reserved_word, %s]", printPtr);
+													char delim[] = " ";													// Sets a delimiter.
+													char* str =  malloc(strlen(yytext)+1);								// Allocates memory space.
+													strcpy(str, yytext);												// Copies the string.
+													int lenYytext = strlen(yytext);										// Gets the yytext length.
+													char* ptr = strtok(str, delim);										// Applies the split.
+													char* printPtr =  malloc(strlen(ptr)+1);							// Allocates memory space.
+													strcpy(printPtr, ptr);												// Copies the string.
+													int lenPtr = strlen(ptr);											// Gets the ptr length.
+													strncpy(str, yytext + (lenPtr + 1), lenYytext);						// Copies the string.
+													printf("[reserved_word, %s]", printPtr);							// Prints the reserved_word.
 													
 													/*
 													 * If the expression contains comma, the split is applied and for 
 													 * each value inside the spplited values a new id will be allocated.
 													*/ 
 													if (strchr(str, ',') != NULL) {
-														k--;
+														k--;															// Decreases the iterator.
 														char* strComma;
 														// While comma exists.
 														while(strchr(str, ',') != NULL) {
@@ -265,11 +264,11 @@ HAS_SEMICOLON	^\;
 																// If the character is different than ' ' populates the matrixes.
 																if (printPtr[i] != ' ') {
 																	strncpy(printPtr, printPtr + i, strlen(printPtr));	// Copies the string.
-																	currentId++;
-																	k++;
-																	id[scope][k] = currentId;
-																	name[scope][k] = printPtr;
-																	printf("[id, %d]", id[scope][k]);
+																	currentId++;										// Increases the currentId.
+																	k++;												// Increases the iterator.	
+																	id[scope][k] = currentId;							// Populates the id matrix.
+																	name[scope][k] = printPtr;							// Populates the name matrix.
+																	printf("[id, %d]", id[scope][k]);					// Prints the id.
 																	break;
 																}
 															}
@@ -285,22 +284,22 @@ HAS_SEMICOLON	^\;
 																// If the character is different than ' '.
 																if (str[i] != ' ') {
 																	strncpy(str, str + i, strlen(str));					// Copies the string.
-																	currentId++;
-																	k++;
-																	id[scope][k] = currentId;
-																	name[scope][k] = str;
-																	printf("[id, %d]", id[scope][k]);
+																	currentId++;										// Increases the currentId.
+																	k++;												// Increases the iterator.
+																	id[scope][k] = currentId;							// Populates the id matrix.
+																	name[scope][k] = str;								// Populates the name matrix.
+																	printf("[id, %d]", id[scope][k]);					// Prints the id.
 																	break;
 																}
 															}
 														// else if character is different than ' ' populates the matrixes and updates the iterators.
 														} else {
-																currentId++;
-																k++;
-																id[scope][k] = currentId;
-																name[scope][k] = strComma;
-																printf("[id, %d]", id[scope][k]);
-															}
+															currentId++;												// Increases the currentId.
+															k++;														// Increases the iterator.	
+															id[scope][k] = currentId;									// Populates the id matrix.
+															name[scope][k] = strComma;									// Populates the name matrix.
+															printf("[id, %d]", id[scope][k]);							// Prints the id.
+														}
 													// else if the expression does not contain comma. Only contains one variable (id).
 													} else {
 														// Navigates through the variables and works like a trim function.
@@ -308,89 +307,10 @@ HAS_SEMICOLON	^\;
 															// If the character is different than ' ' and '*' populates the matrixes.
 															if (str[i] != ' ' && str[i] != '*') {
 																strncpy(str, str + i, strlen(str));						// Copies the string.
-																currentId++;
-																id[scope][k] = currentId;
-																name[scope][k] = str;
-																printf("[id, %d]", id[scope][k]);
-																break;
-															}
-														}
-													}
-													break;
-												}
-											}
-										}
-										
-{TYPE}\ *?\*?\ *?{ID}					{	for (int k = 0; k < sizeof name[scope] / sizeof name[scope][0]; k++){
-												if (strcmp(name[scope][k], "") == 0) {
-													
-													// Handle space.
-													char delim[] = " ";													// Sets a delimiter.
-													char* str =  malloc(strlen(yytext)+1);								// Allocates memory space.
-													strcpy(str, yytext);												// Copies the string.
-													int lenYytext = strlen(yytext);										// Gets the yytext length.
-													char* ptr = strtok(str, delim);
-													char* printPtr =  malloc(strlen(ptr)+1);							// Allocates memory space.
-													strcpy(printPtr, ptr);												// Copies the string.
-													int lenPtr = strlen(ptr);											// Gets the ptr length.
-													strncpy(str, yytext + (lenPtr + 1), lenYytext);						// Copies the string.
-													printf("[reserved_word, %s]", printPtr);
-													
-													// Handle comma.
-													if (strchr(str, ',') != NULL) {
-														k--;
-														char* strComma;
-														while(strchr(str, ',') != NULL) {
-															char delimComma[] = ",";									// Sets a delimiter.
-															strComma =  malloc(strlen(str)+1);							// Allocates memory space.
-															strcpy(strComma, str);										// Copies the string.
-															lenYytext = strlen(str);									// Gets the str length.
-															ptr = strtok(strComma, delimComma);
-															printPtr =  malloc(strlen(ptr)+1);							// Allocates memory space.
-															strcpy(printPtr, ptr);
-															for (int i = 0; i < strlen(printPtr); i++) { 
-																if (printPtr[i] != ' ') {
-																	strncpy(printPtr, printPtr + i, strlen(printPtr));	// Copies the string.
-																	currentId++;
-																	k++;
-																	id[scope][k] = currentId;
-																	name[scope][k] = printPtr;
-																	printf("[id, %d]", id[scope][k]);
-																	break;
-																}
-															}
-															lenPtr = strlen(ptr);										// Gets the ptr length.
-															strncpy(strComma, str + (lenPtr + 1), lenYytext);			// Copies the string.
-															str =  malloc(strlen(strComma)+1);							// Allocates memory space.
-															strncpy(str, strComma, strlen(strComma));					// Copies the string.
-														}
-														if (str[0] == ' ') {
-															for (int i = 0; i < strlen(str); i++) { 
-																if (str[i] != ' ') {
-																	strncpy(str, str + i, strlen(str));					// Copies the string.
-																	currentId++;
-																	k++;
-																	id[scope][k] = currentId;
-																	name[scope][k] = str;
-																	printf("[id, %d]", id[scope][k]);
-																	break;
-																}
-																}
-														} else {
-																currentId++;
-																k++;
-																id[scope][k] = currentId;
-																name[scope][k] = strComma;
-																printf("[id, %d]", id[scope][k]);
-															}
-													} else {
-														for (int i = 0; i < strlen(str); i++) { 
-															if (str[i] != ' ' && str[i] != '*') {
-																strncpy(str, str + i, strlen(str));						// Copies the string.
-																currentId++;
-																id[scope][k] = currentId;
-																name[scope][k] = str;
-																printf("[id, %d]", id[scope][k]);
+																currentId++;											// Increases the currentId.
+																id[scope][k] = currentId;								// Populates the id matrix.
+																name[scope][k] = str;									// Populates the name matrix.
+																printf("[id, %d]", id[scope][k]);						// Prints the id.
 																break;
 															}
 														}
@@ -400,43 +320,63 @@ HAS_SEMICOLON	^\;
 											}
 										}
 
-{ID} 									{ int existId = 0; // 0 --> Nao existe && 1 --> Existe.
-											// Verificar se o elemento jah existe na matriz.
+{ID} 									{ 	// Verify the scope id and gets the variable id.
+											
+											// Variable that verify if the id exists.
+											int existId = 0; // 0 --> Does not exist && 1 --> Exists.
+											
+											// Verify if the variable id already exist. Changes the scopes in each iteration.
 											for (int i = scope; i >= 0; i--) {
+												// If exists breaks out of the loop.
 												if (existId == 1) {
 													break;
 												}
+												// Navegates inside each scope verifying if the variable exists.
 												for (int j = 0; j < sizeof name[i] / sizeof name[i][0]; j++){
-													//printf("\n yytext '%s' == name[i][j] '%s' \n", yytext, name[i][j]);
-													char* str = malloc(strlen(yytext)+1);	// Allocates memory space.
-                                                    strcpy(str, yytext);					// Copies the string.
-													if (strcmp(str, name[i][j]) == 0) {
-														printf("[id, %d]", id[i][j]);
-														existId = 1;
+													
+													/* 
+													 * Debug print:
+													 * printf("\n yytext '%s' == name[i][j] '%s' \n", yytext, name[i][j]);
+													*/
+
+													char* str = malloc(strlen(yytext)+1);								// Allocates memory space.
+                                                    strcpy(str, yytext);												// Copies the string.
+													
+													// Verifies if the position value is the same as the str variable.
+													if (strcmp(str, name[i][j]) == 0) {	
+														printf("[id, %d]", id[i][j]);									// Prints the id.	
+														existId = 1;													// Sets the id to 1.
 														break;
 													}
 												}
 											}
-											if (existId == 0){ // Elemento nao encontrado.
+											// Verifies if the variable id was not found.
+											if (existId == 0){
 												printf("[Variavel %s nao encontrada]", yytext);
 											}
 										}
 
-"++"|"+"|"--"|"-"|"*"|"/" 				{printf("[Arith_Op, %s]", yytext);}
+"++"|"+"|"--"|"-"|"*"|"/" 				{	// "Arithmetics Operators" regex.
+											printf("[Arith_Op, %s]", yytext);}
 
-"<"|"<="|"=="|"!="|">="|">" 			{printf("[Relational_Op, %s]", yytext);}
+"<"|"<="|"=="|"!="|">="|">" 			{	// "Relational Operators" regex.
+											printf("[Relational_Op, %s]", yytext);}
 
-"=" 									{printf("[Equal_OP, %s]", yytext);}
+"=" 									{	// "Equal Operator" regex.
+											printf("[Equal_OP, %s]", yytext);}
 
-{STRING}								{printf("[string_literal, %s]", yytext);}
+{STRING}								{	// "String" regex.
+											printf("[string_literal, %s]", yytext);}
 
-";"										{printf("\n");}
+";"										{	// "Semicolon" regex.
+											printf("\n");}
 
-[ \t\n]+
+[ \t\n]+								{ 	/* Handles the remotion of tab and new line. */ }
 
-","|"&"|"("|"{"|")"|"}"|"["|"]"									
+","|"&"|"("|"{"|")"|"}"|"["|"]"			{ 	/* Handles the remotion of other symbols. */ }						
 
-.	 									{printf("Caractere nao reconhecido: %s\n", yytext);}
+.	 									{	// Regex that prints the remaining characters.
+											printf("Caractere nao reconhecido: %s\n", yytext);}
 
 %%
 
