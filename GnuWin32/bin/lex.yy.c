@@ -586,17 +586,24 @@ char *yytext;
 /* Nomes: Daniel Lopes Ferreira, Maxwell Frank Barbosa, Vítor Kehl Matter */
 /* Definitions */
 #line 9 "AnalisadorLexico.lex"
-
-#include <math.h>
+// Package included.
 #include <string.h>
+
+// Current Id.
 int currentId = 0;
-char* name[10][10] = {{"", "", "", "", "", "", "", "", "", ""}, {"", "", "", "", "", "", "", "", "", ""}, {"", "", "", "", "", "", "", "", "", ""}, {"", "", "", "", "", "", "", "", "", ""}, {"", "", "", "", "", "", "", "", "", ""}, {"", "", "", "", "", "", "", "", "", ""}, {"", "", "", "", "", "", "", "", "", ""}, {"", "", "", "", "", "", "", "", "", ""}, {"", "", "", "", "", "", "", "", "", ""}, {"", "", "", "", "", "", "", "", "", ""}};
-int id[10][10];
+
+// Current scope.
 int scope = 0;
+
+// Matrix of elements and scope.
+char* name[10][10] = {{"", "", "", "", "", "", "", "", "", ""}, {"", "", "", "", "", "", "", "", "", ""}, {"", "", "", "", "", "", "", "", "", ""}, {"", "", "", "", "", "", "", "", "", ""}, {"", "", "", "", "", "", "", "", "", ""}, {"", "", "", "", "", "", "", "", "", ""}, {"", "", "", "", "", "", "", "", "", ""}, {"", "", "", "", "", "", "", "", "", ""}, {"", "", "", "", "", "", "", "", "", ""}, {"", "", "", "", "", "", "", "", "", ""}};
+
+// Ids matrix.
+int id[10][10];
 
 #define C_COMMENT 1
 
-#line 600 "lex.yy.c"
+#line 607 "lex.yy.c"
 
 /* Macros after this point can all be overridden by user definitions in
  * section 1.
@@ -747,10 +754,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
 
-#line 34 "AnalisadorLexico.lex"
+#line 40 "AnalisadorLexico.lex"
 
 
-#line 754 "lex.yy.c"
+#line 761 "lex.yy.c"
 
 	if ( yy_init )
 		{
@@ -835,319 +842,285 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 36 "AnalisadorLexico.lex"
+#line 42 "AnalisadorLexico.lex"
 {BEGIN(C_COMMENT);}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 37 "AnalisadorLexico.lex"
+#line 43 "AnalisadorLexico.lex"
 {BEGIN(INITIAL);}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 38 "AnalisadorLexico.lex"
+#line 44 "AnalisadorLexico.lex"
 
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 39 "AnalisadorLexico.lex"
+#line 45 "AnalisadorLexico.lex"
 
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 40 "AnalisadorLexico.lex"
+#line 46 "AnalisadorLexico.lex"
 
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 42 "AnalisadorLexico.lex"
+#line 48 "AnalisadorLexico.lex"
 
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 44 "AnalisadorLexico.lex"
+#line 50 "AnalisadorLexico.lex"
 {scope++;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 46 "AnalisadorLexico.lex"
-{
-										 for(int i = 0; i < sizeof name[scope] / sizeof name[scope][0]; i++){ 
-											 name[scope][i] = "";
-										 }
-									     scope--; 
+#line 52 "AnalisadorLexico.lex"
+{ 	// Removes the stored variables and descreases the scope.
+											for(int i = 0; i < sizeof name[scope] / sizeof name[scope][0]; i++){ 
+												name[scope][i] = "";
+											}
+											scope--; 
 										 }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 53 "AnalisadorLexico.lex"
-{printf("[include, %s]\n", yytext);}
+#line 59 "AnalisadorLexico.lex"
+{ 	// "Include" regex.
+											printf("[include, %s]\n", yytext);}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 55 "AnalisadorLexico.lex"
-{printf("[num, %.2f]", atof(yytext));}
+#line 62 "AnalisadorLexico.lex"
+{ 	// "float" regex.
+											printf("[num, %.2f]", atof(yytext));}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 57 "AnalisadorLexico.lex"
-{printf("[num, %d]", atoi(yytext));}
+#line 65 "AnalisadorLexico.lex"
+{ 	// "numeric" regex.
+											printf("[num, %d]", atoi(yytext));}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 59 "AnalisadorLexico.lex"
-{printf("[pointer_declaration, %s]", yytext);}
+#line 68 "AnalisadorLexico.lex"
+{ 	// "pointer declaration" regex.
+											printf("[pointer_declaration, %s]", yytext);}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 61 "AnalisadorLexico.lex"
-{printf("[reserved_word, %s]", yytext);}
+#line 71 "AnalisadorLexico.lex"
+{ 	// "reserved words" regex.
+											printf("[reserved_word, %s]", yytext);}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 63 "AnalisadorLexico.lex"
-{printf("[Logic_op, %s]", yytext);}
+#line 74 "AnalisadorLexico.lex"
+{ 	// "logic operators" regex.
+											printf("[Logic_op, %s]", yytext);}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 65 "AnalisadorLexico.lex"
-{	for (int k = 0; k < sizeof name[scope] / sizeof name[scope][0]; k++){
+#line 77 "AnalisadorLexico.lex"
+{	// "function" regex. Example: void CalculoMedia.
+
+											// For that iterates over the scope getting the function type and its name.
+											for (int k = 0; k < sizeof name[scope] / sizeof name[scope][0]; k++){
+												// Verifies if the current position value has an empty value.
 												if (strcmp(name[scope][k], "") == 0) {
 													
-													// Handle space.
-													char delim[] = " ";
-													char* str =  malloc(strlen(yytext)+1);
-													strcpy(str, yytext);
-													int lenYytext = strlen(yytext);
-													char* ptr = strtok(str, delim);
-													char* printPtr =  malloc(strlen(ptr)+1);
-													strcpy(printPtr, ptr);
-													int lenPtr = strlen(ptr);
-													strncpy(str, yytext + (lenPtr + 1), lenYytext);
-													str[strlen(str) - 1] = '\0';
+													/* 
+													 * Splits the input using ' ' and populates the id and the name 
+													 * matrixes with the obtained values.
+													*/
+													char delim[] = " "; 							// Sets a delimiter.
+													char* str =  malloc(strlen(yytext)+1); 			// Allocates memory space.
+													strcpy(str, yytext); 							// Copies the string.
+													int lenYytext = strlen(yytext); 				// Gets the yytext length.
+													char* ptr = strtok(str, delim); 				// Applies the split.
+													char* printPtr =  malloc(strlen(ptr)+1); 		// Allocates memory space.
+													strcpy(printPtr, ptr); 							// Copies the string.
+													int lenPtr = strlen(ptr); 						// Gets the ptr length.
+													strncpy(str, yytext + (lenPtr + 1), lenYytext); // Applies a trim function to ignore blank spaces.
+													str[strlen(str) - 1] = '\0'; 					// Removes the parameters' starting parentheses.
 													printf("[reserved_word, %s]", printPtr);
-													currentId++;
-	        										id[scope][k] = currentId;
-	        										name[scope][k] = str;
-	        										printf("[id, %d]", id[scope][k]);
-	        										break;
+													currentId++; 									// Increases the currentId.
+													id[scope][k] = currentId; 						// Populates the id matrix.
+													name[scope][k] = str; 							// Populates the name matrix.
+													printf("[id, %d]", id[scope][k]);
+													break;
 												}
 											}
 										}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 89 "AnalisadorLexico.lex"
-{		yytext[strlen(yytext) - 1] = '\0';
-										for (int k = 0; k < sizeof name[scope] / sizeof name[scope][0]; k++){
-											if (strcmp(name[scope][k], "") == 0) {
-												
-												// Handle space.
-												char delim[] = " ";
-												char* str =  malloc(strlen(yytext)+1);
-												char* str2 =  malloc(strlen(yytext)+1);
-												strcpy(str, yytext);
-												int lenYytext = strlen(yytext);
-												char* ptr = strtok(str, delim);
-												char* printPtr =  malloc(strlen(ptr)+1);
-												strcpy(printPtr, ptr);
-												int lenPtr = strlen(ptr);
-												strncpy(str, yytext + (lenPtr + 1), lenYytext);
-												printf("[reserved_word, %s]", printPtr);
-												
-												// Handle comma.
-												if (strchr(str, ',') != NULL) {
-													k--;
-													char* strComma;
-													while(strchr(str, ',') != NULL) {
-														char delimComma[] = ",";
-														// Aloca memoria.
-														strComma =  malloc(strlen(str)+1);
-														strcpy(strComma, str);
-														lenYytext = strlen(str);
-														// Separa elements pela virgula.
-														ptr = strtok(strComma, delimComma);
-														printPtr =  malloc(strlen(ptr)+1);
-														strcpy(printPtr, ptr);
-														for (int i = 0; i < strlen(printPtr); i++) { 
-															if (printPtr[i] != ' ' && printPtr[i] != '*') {
-																strncpy(printPtr, printPtr + i, strlen(printPtr));
-																currentId++;
-																k++;
-																id[scope][k] = currentId;
-																name[scope][k] = printPtr;
-																printf("[id, %d]", id[scope][k]);
-																break;
-															}
-														}
+#line 108 "AnalisadorLexico.lex"
+{	// Verifies the variables creation inside parameters. Example: (int * vetor, int elementos).
+
+											// Removes the closing parentheses. 
+											yytext[strlen(yytext) - 1] = '\0';
+											
+											// For that iterates over the name matrix verifying the variables.
+											for (int k = 0; k < sizeof name[scope] / sizeof name[scope][0]; k++){
+												// Verifies if the current position value has an empty value.
+												if (strcmp(name[scope][k], "") == 0) {
+													
+													/* 
+													 * Splits the input using ' ' and populates the id and the name 
+													 * matrixes with the obtained values.
+													*/
+													char delim[] = " ";								// Sets a delimiter.
+													char* str =  malloc(strlen(yytext)+1);			// Allocates memory space.
+													char* str2 =  malloc(strlen(yytext)+1);			// Allocates memory space.
+													strcpy(str, yytext);							// Copies the string.
+													int lenYytext = strlen(yytext);					// Gets the yytext length.
+													char* ptr = strtok(str, delim);					// Applies the split.
+													char* printPtr =  malloc(strlen(ptr)+1);		// Allocates memory space.
+													strcpy(printPtr, ptr);							// Copies the string.
+													int lenPtr = strlen(ptr);						// Gets the ptr length.
+													strncpy(str, yytext + (lenPtr + 1), lenYytext);	// Copies the string.
+													printf("[reserved_word, %s]", printPtr);
+													
+													/*
+													 * If the expression contains comma, the split is applied and for 
+													 * each value inside the spplited values a new id will be allocated.
+													*/ 
+													if (strchr(str, ',') != NULL) {
+														k--;															// Decreases the iterator.
+														char* strComma;
 														
-														lenPtr = strlen(ptr);
-														strncpy(strComma, str + (lenPtr + 1), lenYytext);
-														str =  malloc(strlen(strComma)+1);
-														strncpy(str, strComma, strlen(strComma));
-														
-														char delim[] = " ";
-														str2 =  malloc(strlen(str)+1);
-														strcpy(str2, str);
-														int lenYytext = strlen(str);
-														char* ptr = strtok(str2, delim);
-														char* printPtr =  malloc(strlen(ptr)+1);
-														strcpy(printPtr, ptr);
-														int lenPtr = strlen(ptr);
-														strncpy(str2, str + (lenPtr + 1), lenYytext);
-														printf("[reserved_word, %s]", printPtr);
-													}
-													if (str2[0] == ' ' || str2[0] == '*') {
-														for (int i = 0; i < strlen(str2); i++) { 
-															if (str2[i] != ' ' && str2[i] != '*') {
-																strncpy(str2, str2 + i, strlen(str2));
-																currentId++;
-																k++;
-																id[scope][k] = currentId;
-																name[scope][k] = str2;
-																printf("[id, %d]", id[scope][k]);
-																break;
+														// While comma exists.
+														while(strchr(str, ',') != NULL) {
+															char delimComma[] = ",";									// Sets a delimiter.
+															strComma =  malloc(strlen(str)+1);							// Allocates memory space.
+															strcpy(strComma, str);										// Copies the string.
+															lenYytext = strlen(str);									// Gets the str length.
+															ptr = strtok(strComma, delimComma);							// Applies the split.
+															printPtr =  malloc(strlen(ptr)+1);							// Allocates memory space.
+															strcpy(printPtr, ptr);										// Copies the string.
+															
+															// Navigates through the splitted variables.
+															for (int i = 0; i < strlen(printPtr); i++) { 
+																// If the character is different than ' ' and '*' populates the matrixes.
+																if (printPtr[i] != ' ' && printPtr[i] != '*') {
+																	strncpy(printPtr, printPtr + i, strlen(printPtr));	// Copies the string.
+																	currentId++; // Increases the current id.
+																	k++;
+																	id[scope][k] = currentId;
+																	name[scope][k] = printPtr;
+																	printf("[id, %d]", id[scope][k]);
+																	break;
+																}
 															}
+															
+															lenPtr = strlen(ptr);								// Gets the ptr length.
+															strncpy(strComma, str + (lenPtr + 1), lenYytext);	// Copies the string.
+															str =  malloc(strlen(strComma)+1);					// Allocates memory space.
+															strncpy(str, strComma, strlen(strComma));			// Copies the string.
+															
+															char delim[] = " ";									// Sets a delimiter.
+															str2 =  malloc(strlen(str)+1);						// Allocates memory space.
+															strcpy(str2, str);									// Copies the string.
+															int lenYytext = strlen(str);						// Gets the str length.
+															char* ptr = strtok(str2, delim);					// Applies the split.
+															char* printPtr =  malloc(strlen(ptr)+1);			// Allocates memory space.
+															strcpy(printPtr, ptr);								// Copies the string.
+															int lenPtr = strlen(ptr);							// Gets the ptr length.
+															strncpy(str2, str + (lenPtr + 1), lenYytext);		// Copies the string.
+															printf("[reserved_word, %s]", printPtr);
 														}
-													} else {
+														// Verifies if the variable containts ' ' or '*' and works like a trim function.
+														if (str2[0] == ' ' || str2[0] == '*') { 
+														
+															// Iterates over ' ' and '*' until the character is different.
+															for (int i = 0; i < strlen(str2); i++) { 
+																// If the character is different than ' ' and '*' populates the matrixes.
+																if (str2[i] != ' ' && str2[i] != '*') {
+																	strncpy(str2, str2 + i, strlen(str2));		// Copies the string.
+																	currentId++;
+																	k++;
+																	id[scope][k] = currentId;
+																	name[scope][k] = str2;
+																	printf("[id, %d]", id[scope][k]);
+																	break;
+																}
+															}
+														// else if character is different than ' ' and '*' populates the matrixes and updates the iterators.
+														} else {
 															currentId++;
 															k++;
 															id[scope][k] = currentId;
 															name[scope][k] = strComma;
 															printf("[id, %d]", id[scope][k]);
 														}
-												} else {
-												    for (int i = 0; i < strlen(str); i++) { 
-															if (str[i] != ' ' && str[i] != '*') {
-																strncpy(str, str + i, strlen(str));
-																currentId++;
-																id[scope][k] = currentId;
-																name[scope][k] = str;
-																printf("[id, %d]", id[scope][k]);
-																break;
-															}
-													}
-												}
-												break;
-											}
-										}
-									}
-	YY_BREAK
-case 17:
-YY_RULE_SETUP
-#line 184 "AnalisadorLexico.lex"
-{	for (int k = 0; k < sizeof name[scope] / sizeof name[scope][0]; k++){
-												if (strcmp(name[scope][k], "") == 0) {
-													
-													// Handle space.
-													char delim[] = " ";
-													char* str =  malloc(strlen(yytext)+1);
-													strcpy(str, yytext);
-													int lenYytext = strlen(yytext);
-													char* ptr = strtok(str, delim);
-													char* printPtr =  malloc(strlen(ptr)+1);
-													strcpy(printPtr, ptr);
-													int lenPtr = strlen(ptr);
-													strncpy(str, yytext + (lenPtr + 1), lenYytext);
-													printf("[reserved_word, %s]", printPtr);
-													
-													// Handle comma.
-													if (strchr(str, ',') != NULL) {
-													    k--;
-													    char* strComma;
-													    while(strchr(str, ',') != NULL) {
-	    													char delimComma[] = ",";
-	    													strComma =  malloc(strlen(str)+1);
-	    													strcpy(strComma, str);
-	    													lenYytext = strlen(str);
-	    													ptr = strtok(strComma, delimComma);
-	    													printPtr =  malloc(strlen(ptr)+1);
-	    													strcpy(printPtr, ptr);
-	    													for (int i = 0; i < strlen(printPtr); i++) { 
-	        													if (printPtr[i] != ' ') {
-	        													    strncpy(printPtr, printPtr + i, strlen(printPtr));
-	            													currentId++;
-	            													k++;
-	            													id[scope][k] = currentId;
-	            													name[scope][k] = printPtr;
-	            													printf("[id, %d]", id[scope][k]);
-	            													break;
-	        													}
-													        }
-	    													lenPtr = strlen(ptr);
-	    													strncpy(strComma, str + (lenPtr + 1), lenYytext);
-	    													str =  malloc(strlen(strComma)+1);
-	    													strncpy(str, strComma, strlen(strComma));
-													    }
-													    if (str[0] == ' ') {
-	    													for (int i = 0; i < strlen(str); i++) { 
-	        													if (str[i] != ' ') {
-	        													    strncpy(str, str + i, strlen(str));
-	            													currentId++;
-	            													k++;
-	            													id[scope][k] = currentId;
-	            													name[scope][k] = str;
-	            													printf("[id, %d]", id[scope][k]);
-	            													break;
-														        }
-	        												    }
-	        											} else {
-	        												    currentId++;
-	        													k++;
-	        													id[scope][k] = currentId;
-	        													name[scope][k] = strComma;
-	        													printf("[id, %d]", id[scope][k]);
-	        												}
+													// else if the expression does not contain comma. Only contains one variable (id).
 													} else {
-													    for (int i = 0; i < strlen(str); i++) { 
+														// Navigates through the variables and works like a trim function.
+														for (int i = 0; i < strlen(str); i++) {
+															// If the character is different than ' ' and '*' populates the matrixes.
 															if (str[i] != ' ' && str[i] != '*') {
-																strncpy(str, str + i, strlen(str));
+																strncpy(str, str + i, strlen(str));			// Copies the string.
 																currentId++;
 																id[scope][k] = currentId;
 																name[scope][k] = str;
 																printf("[id, %d]", id[scope][k]);
 																break;
 															}
-													    }
+														}
 													}
 													break;
 												}
 											}
 										}
 	YY_BREAK
-case 18:
+case 17:
 YY_RULE_SETUP
-#line 263 "AnalisadorLexico.lex"
-{	for (int k = 0; k < sizeof name[scope] / sizeof name[scope][0]; k++){
+#line 226 "AnalisadorLexico.lex"
+{	// Verifies the variables creation outside functions. Example: float NotaDaP1, NotaDaP2;.
+
+											// For that iterates over the name matrix verifying the variables.
+											for (int k = 0; k < sizeof name[scope] / sizeof name[scope][0]; k++){
+												// Verifies if the current position value has an empty value.
 												if (strcmp(name[scope][k], "") == 0) {
 													
-													// Handle space.
-													char delim[] = " ";
-													char* str =  malloc(strlen(yytext)+1);
-													strcpy(str, yytext);
-													int lenYytext = strlen(yytext);
-													char* ptr = strtok(str, delim);
-													char* printPtr =  malloc(strlen(ptr)+1);
-													strcpy(printPtr, ptr);
-													int lenPtr = strlen(ptr);
-													strncpy(str, yytext + (lenPtr + 1), lenYytext);
+													/* 
+													 * Splits the input using ' ' and populates the id and the name 
+													 * matrixes with the obtained values.
+													*/
+													char delim[] = " ";								// Sets a delimiter.
+													char* str =  malloc(strlen(yytext)+1);			// Allocates memory space.
+													strcpy(str, yytext);							// Copies the string.
+													int lenYytext = strlen(yytext);					// Gets the yytext length.
+													char* ptr = strtok(str, delim);					// Applies the split.
+													char* printPtr =  malloc(strlen(ptr)+1);		// Allocates memory space.
+													strcpy(printPtr, ptr);							// Copies the string.
+													int lenPtr = strlen(ptr);						// Gets the ptr length.
+													strncpy(str, yytext + (lenPtr + 1), lenYytext);	// Copies the string.
 													printf("[reserved_word, %s]", printPtr);
 													
-													// Handle comma.
+													/*
+													 * If the expression contains comma, the split is applied and for 
+													 * each value inside the spplited values a new id will be allocated.
+													*/ 
 													if (strchr(str, ',') != NULL) {
 														k--;
 														char* strComma;
+														// While comma exists.
 														while(strchr(str, ',') != NULL) {
-															char delimComma[] = ",";
-															strComma =  malloc(strlen(str)+1);
-															strcpy(strComma, str);
-															lenYytext = strlen(str);
-															ptr = strtok(strComma, delimComma);
-															printPtr =  malloc(strlen(ptr)+1);
-															strcpy(printPtr, ptr);
+															char delimComma[] = ",";									// Sets a delimiter.
+															strComma =  malloc(strlen(str)+1);							// Allocates memory space.
+															strcpy(strComma, str);										// Copies the string.
+															lenYytext = strlen(str);									// Gets the str length.
+															ptr = strtok(strComma, delimComma);							// Applies the split.
+															printPtr =  malloc(strlen(ptr)+1);							// Allocates memory space.
+															strcpy(printPtr, ptr);										// Copies the string.
 															for (int i = 0; i < strlen(printPtr); i++) { 
+																// If the character is different than ' ' populates the matrixes.
 																if (printPtr[i] != ' ') {
-																	strncpy(printPtr, printPtr + i, strlen(printPtr));
+																	strncpy(printPtr, printPtr + i, strlen(printPtr));	// Copies the string.
 																	currentId++;
 																	k++;
 																	id[scope][k] = currentId;
@@ -1156,15 +1129,104 @@ YY_RULE_SETUP
 																	break;
 																}
 															}
-															lenPtr = strlen(ptr);
-															strncpy(strComma, str + (lenPtr + 1), lenYytext);
-															str =  malloc(strlen(strComma)+1);
-															strncpy(str, strComma, strlen(strComma));
+															lenPtr = strlen(ptr);										// Gets the ptr length.
+															strncpy(strComma, str + (lenPtr + 1), lenYytext);			// Copies the string.
+															str =  malloc(strlen(strComma)+1);							// Allocates memory space.
+															strncpy(str, strComma, strlen(strComma));					// Copies the string.
+														}
+														// Verifies if the variable containts ' ' and works like a trim function.
+														if (str[0] == ' ') {
+															// Iterates over ' ' until the character is different.
+															for (int i = 0; i < strlen(str); i++) {
+																// If the character is different than ' '.
+																if (str[i] != ' ') {
+																	strncpy(str, str + i, strlen(str));					// Copies the string.
+																	currentId++;
+																	k++;
+																	id[scope][k] = currentId;
+																	name[scope][k] = str;
+																	printf("[id, %d]", id[scope][k]);
+																	break;
+																}
+															}
+														// else if character is different than ' ' populates the matrixes and updates the iterators.
+														} else {
+																currentId++;
+																k++;
+																id[scope][k] = currentId;
+																name[scope][k] = strComma;
+																printf("[id, %d]", id[scope][k]);
+															}
+													// else if the expression does not contain comma. Only contains one variable (id).
+													} else {
+														// Navigates through the variables and works like a trim function.
+														for (int i = 0; i < strlen(str); i++) { 
+															// If the character is different than ' ' and '*' populates the matrixes.
+															if (str[i] != ' ' && str[i] != '*') {
+																strncpy(str, str + i, strlen(str));						// Copies the string.
+																currentId++;
+																id[scope][k] = currentId;
+																name[scope][k] = str;
+																printf("[id, %d]", id[scope][k]);
+																break;
+															}
+														}
+													}
+													break;
+												}
+											}
+										}
+	YY_BREAK
+case 18:
+YY_RULE_SETUP
+#line 324 "AnalisadorLexico.lex"
+{	for (int k = 0; k < sizeof name[scope] / sizeof name[scope][0]; k++){
+												if (strcmp(name[scope][k], "") == 0) {
+													
+													// Handle space.
+													char delim[] = " ";													// Sets a delimiter.
+													char* str =  malloc(strlen(yytext)+1);								// Allocates memory space.
+													strcpy(str, yytext);												// Copies the string.
+													int lenYytext = strlen(yytext);										// Gets the yytext length.
+													char* ptr = strtok(str, delim);
+													char* printPtr =  malloc(strlen(ptr)+1);							// Allocates memory space.
+													strcpy(printPtr, ptr);												// Copies the string.
+													int lenPtr = strlen(ptr);											// Gets the ptr length.
+													strncpy(str, yytext + (lenPtr + 1), lenYytext);						// Copies the string.
+													printf("[reserved_word, %s]", printPtr);
+													
+													// Handle comma.
+													if (strchr(str, ',') != NULL) {
+														k--;
+														char* strComma;
+														while(strchr(str, ',') != NULL) {
+															char delimComma[] = ",";									// Sets a delimiter.
+															strComma =  malloc(strlen(str)+1);							// Allocates memory space.
+															strcpy(strComma, str);										// Copies the string.
+															lenYytext = strlen(str);									// Gets the str length.
+															ptr = strtok(strComma, delimComma);
+															printPtr =  malloc(strlen(ptr)+1);							// Allocates memory space.
+															strcpy(printPtr, ptr);
+															for (int i = 0; i < strlen(printPtr); i++) { 
+																if (printPtr[i] != ' ') {
+																	strncpy(printPtr, printPtr + i, strlen(printPtr));	// Copies the string.
+																	currentId++;
+																	k++;
+																	id[scope][k] = currentId;
+																	name[scope][k] = printPtr;
+																	printf("[id, %d]", id[scope][k]);
+																	break;
+																}
+															}
+															lenPtr = strlen(ptr);										// Gets the ptr length.
+															strncpy(strComma, str + (lenPtr + 1), lenYytext);			// Copies the string.
+															str =  malloc(strlen(strComma)+1);							// Allocates memory space.
+															strncpy(str, strComma, strlen(strComma));					// Copies the string.
 														}
 														if (str[0] == ' ') {
 															for (int i = 0; i < strlen(str); i++) { 
 																if (str[i] != ' ') {
-																	strncpy(str, str + i, strlen(str));
+																	strncpy(str, str + i, strlen(str));					// Copies the string.
 																	currentId++;
 																	k++;
 																	id[scope][k] = currentId;
@@ -1183,7 +1245,7 @@ YY_RULE_SETUP
 													} else {
 														for (int i = 0; i < strlen(str); i++) { 
 															if (str[i] != ' ' && str[i] != '*') {
-																strncpy(str, str + i, strlen(str));
+																strncpy(str, str + i, strlen(str));						// Copies the string.
 																currentId++;
 																id[scope][k] = currentId;
 																name[scope][k] = str;
@@ -1199,7 +1261,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 342 "AnalisadorLexico.lex"
+#line 403 "AnalisadorLexico.lex"
 { int existId = 0; // 0 --> Nao existe && 1 --> Existe.
 											// Verificar se o elemento jah existe na matriz.
 											for (int i = scope; i >= 0; i--) {
@@ -1208,8 +1270,8 @@ YY_RULE_SETUP
 												}
 												for (int j = 0; j < sizeof name[i] / sizeof name[i][0]; j++){
 													//printf("\n yytext '%s' == name[i][j] '%s' \n", yytext, name[i][j]);
-													char* str = malloc(strlen(yytext)+1);
-                                                    strcpy(str, yytext);
+													char* str = malloc(strlen(yytext)+1);	// Allocates memory space.
+                                                    strcpy(str, yytext);					// Copies the string.
 													if (strcmp(str, name[i][j]) == 0) {
 														printf("[id, %d]", id[i][j]);
 														existId = 1;
@@ -1224,50 +1286,50 @@ YY_RULE_SETUP
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 364 "AnalisadorLexico.lex"
+#line 425 "AnalisadorLexico.lex"
 {printf("[Arith_Op, %s]", yytext);}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 366 "AnalisadorLexico.lex"
+#line 427 "AnalisadorLexico.lex"
 {printf("[Relational_Op, %s]", yytext);}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 368 "AnalisadorLexico.lex"
+#line 429 "AnalisadorLexico.lex"
 {printf("[Equal_OP, %s]", yytext);}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 370 "AnalisadorLexico.lex"
+#line 431 "AnalisadorLexico.lex"
 {printf("[string_literal, %s]", yytext);}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 372 "AnalisadorLexico.lex"
+#line 433 "AnalisadorLexico.lex"
 {printf("\n");}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 374 "AnalisadorLexico.lex"
+#line 435 "AnalisadorLexico.lex"
 
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 376 "AnalisadorLexico.lex"
+#line 437 "AnalisadorLexico.lex"
 
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 378 "AnalisadorLexico.lex"
+#line 439 "AnalisadorLexico.lex"
 {printf("Caractere nao reconhecido: %s\n", yytext);}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 380 "AnalisadorLexico.lex"
+#line 441 "AnalisadorLexico.lex"
 ECHO;
 	YY_BREAK
-#line 1271 "lex.yy.c"
+#line 1333 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(C_COMMENT):
 	yyterminate();
@@ -2154,7 +2216,7 @@ int main()
 	return 0;
 	}
 #endif
-#line 380 "AnalisadorLexico.lex"
+#line 441 "AnalisadorLexico.lex"
 
 
 int main(int argc, char *argv[]){
