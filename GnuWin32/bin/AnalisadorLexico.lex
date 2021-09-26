@@ -26,53 +26,59 @@ int id[10][10];
 %x C_COMMENT
 DIGIT			[0-9]
 ID				[a-z|A-Z][a-z0-9|A-Z0-9]*
-FUNCTION 		int|float|double|string|bool|void\ +[a-z|A-Z][a-z0-9|A-Z0-9]*\ ?\(
+FUNCTION		int|float|double|string|bool|void\ +[a-z|A-Z][a-z0-9|A-Z0-9]*\ ?\(
 STRING			\".*\"
 COMMENT			\/\/.*
 RESERVED		while|if|else|switch|for|return|NULL|break|case|#include|printf|clrscr|getch|scanf
 TYPE			int|float|double|string|bool
 LOGIC			&&|!|"||"
-START_SCOPE  	\{
+START_SCOPE		\{
 END_SCOPE		\}
 HAS_SEMICOLON	^\;
 
 
 %%
 
-<INITIAL>"/*"         					{BEGIN(C_COMMENT);}
+<INITIAL>"/*"							{BEGIN(C_COMMENT);}
 <C_COMMENT>"*/"							{BEGIN(INITIAL);}
-<C_COMMENT>[^*\n]+   						
-<C_COMMENT>"*"       
-<C_COMMENT>\n        
+<C_COMMENT>[^*\n]+
+<C_COMMENT>"*"
+<C_COMMENT>\n
 
 {COMMENT}
 
 {START_SCOPE} 							{scope++;}
 
-{END_SCOPE} 							{ 	// Removes the stored variables and descreases the scope.
+{END_SCOPE}								{ 	// Removes the stored variables and descreases the scope.
 											for(int i = 0; i < sizeof name[scope] / sizeof name[scope][0]; i++){ 
 												name[scope][i] = "";
 											}
 											scope--; 
-										 }
+										}
 
 \<.+\>									{ 	// "Include" regex.
-											printf("[include, %s]\n", yytext);}
+											printf("[include, %s]\n", yytext);
+										}
 
-{DIGIT}*"."{DIGIT}* 					{ 	// "float" regex.
-											printf("[num, %.2f]", atof(yytext));}
+{DIGIT}*"."{DIGIT}*						{ 	// "float" regex.
+											printf("[num, %.2f]", atof(yytext));
+										}
 
-{DIGIT}+ 								{ 	// "numeric" regex.
-											printf("[num, %d]", atoi(yytext));}
+{DIGIT}+								{ 	// "numeric" regex.
+											printf("[num, %d]", atoi(yytext));
+										}
 
-{RESERVED}\ ?"*"\ ?{ID}					{ 	// "pointer declaration" regex.
-											printf("[pointer_declaration, %s]", yytext);}
+{RESERVED}\ ?"*"\ ?{ID}					{	// "pointer declaration" regex.
+											printf("[pointer_declaration, %s]", yytext);
+										}
 
 {RESERVED}								{ 	// "reserved words" regex.
-											printf("[reserved_word, %s]", yytext);}
+											printf("[reserved_word, %s]", yytext);
+										}
 
 {LOGIC}									{ 	// "logic operators" regex.
-											printf("[Logic_op, %s]", yytext);}
+											printf("[Logic_op, %s]", yytext);
+										}
 
 {FUNCTION}								{	// "function" regex. Example: void CalculoMedia.
 
@@ -85,20 +91,20 @@ HAS_SEMICOLON	^\;
 													 * Splits the input using ' ' and populates the id and the name 
 													 * matrixes with the obtained values.
 													*/
-													char delim[] = " "; 												// Sets a delimiter.
-													char* str =  malloc(strlen(yytext)+1); 								// Allocates memory space.
-													strcpy(str, yytext); 												// Copies the string.
-													int lenYytext = strlen(yytext); 									// Gets the yytext length.
-													char* ptr = strtok(str, delim); 									// Applies the split.
-													char* printPtr =  malloc(strlen(ptr)+1); 							// Allocates memory space.
-													strcpy(printPtr, ptr); 												// Copies the string.
-													int lenPtr = strlen(ptr); 											// Gets the ptr length.
-													strncpy(str, yytext + (lenPtr + 1), lenYytext); 					// Applies a trim function to ignore blank spaces.
-													str[strlen(str) - 1] = '\0'; 										// Removes the parameters' starting parentheses.
+													char delim[] = " ";													// Sets a delimiter.
+													char* str =  malloc(strlen(yytext)+1);								// Allocates memory space.
+													strcpy(str, yytext);												// Copies the string.
+													int lenYytext = strlen(yytext);										// Gets the yytext length.
+													char* ptr = strtok(str, delim);										// Applies the split.
+													char* printPtr =  malloc(strlen(ptr)+1);							// Allocates memory space.
+													strcpy(printPtr, ptr);												// Copies the string.
+													int lenPtr = strlen(ptr);											// Gets the ptr length.
+													strncpy(str, yytext + (lenPtr + 1), lenYytext);						// Applies a trim function to ignore blank spaces.
+													str[strlen(str) - 1] = '\0';										// Removes the parameters' starting parentheses.
 													printf("[reserved_word, %s]", printPtr);							// Prints the reserved_word.
-													currentId++; 														// Increases the currentId.
-													id[scope][k] = currentId; 											// Populates the id matrix.
-													name[scope][k] = str; 												// Populates the name matrix.
+													currentId++;														// Increases the currentId.
+													id[scope][k] = currentId;											// Populates the id matrix.
+													name[scope][k] = str;												// Populates the name matrix.
 													printf("[id, %d]", id[scope][k]);									// Prints the id.
 													break;
 												}
@@ -154,7 +160,7 @@ HAS_SEMICOLON	^\;
 																// If the character is different than ' ' and '*' populates the matrixes.
 																if (printPtr[i] != ' ' && printPtr[i] != '*') {
 																	strncpy(printPtr, printPtr + i, strlen(printPtr));	// Copies the string.
-																	currentId++; 										// Increases the currentId.
+																	currentId++;										// Increases the currentId.
 																	k++;												// Increases the iterator.
 																	id[scope][k] = currentId;							// Populates the id matrix.
 																	name[scope][k] = printPtr;							// Populates the name matrix.	
@@ -356,27 +362,33 @@ HAS_SEMICOLON	^\;
 											}
 										}
 
-"++"|"+"|"--"|"-"|"*"|"/" 				{	// "Arithmetics Operators" regex.
-											printf("[Arith_Op, %s]", yytext);}
+"++"|"+"|"--"|"-"|"*"|"/"				{	// "Arithmetics Operators" regex.
+											printf("[Arith_Op, %s]", yytext);
+										}
 
-"<"|"<="|"=="|"!="|">="|">" 			{	// "Relational Operators" regex.
-											printf("[Relational_Op, %s]", yytext);}
+"<"|"<="|"=="|"!="|">="|">"				{	// "Relational Operators" regex.
+											printf("[Relational_Op, %s]", yytext);
+										}
 
-"=" 									{	// "Equal Operator" regex.
-											printf("[Equal_OP, %s]", yytext);}
+"="										{	// "Equal Operator" regex.
+											printf("[Equal_OP, %s]", yytext);
+										}
 
 {STRING}								{	// "String" regex.
-											printf("[string_literal, %s]", yytext);}
+											printf("[string_literal, %s]", yytext);
+										}
 
 ";"										{	// "Semicolon" regex.
-											printf("\n");}
+											printf("\n");
+										}
 
 [ \t\n]+								{ 	/* Handles the remotion of tab and new line. */ }
 
-","|"&"|"("|"{"|")"|"}"|"["|"]"			{ 	/* Handles the remotion of other symbols. */ }						
+","|"&"|"("|"{"|")"|"}"|"["|"]"			{ 	/* Handles the remotion of other symbols. */ }					
 
-.	 									{	// Regex that prints the remaining characters.
-											printf("Caractere nao reconhecido: %s\n", yytext);}
+.										{	// Regex that prints the remaining characters.
+											printf("Caractere nao reconhecido: %s\n", yytext);
+										}
 
 %%
 
